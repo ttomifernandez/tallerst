@@ -57,19 +57,19 @@
 <body class="text-slate-800 antialiased selection:bg-red-600 selection:text-white">
 
     <!-- Navbar -->
-    <nav class="fixed w-full z-50 bg-navy text-white shadow-lg transition-all duration-300" id="navbar">
+    <nav class="fixed w-full z-50 bg-white text-navy shadow-sm transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="#" class="text-2xl font-bold flex items-center gap-2">
-                        <span class="text-red-600 text-3xl">⚙️</span>
+                    <a href="#" class="text-2xl font-bold flex items-center gap-2 text-navy">
+                        <img src="logo.png" alt="Logo Taller ST" class="h-12 w-auto object-contain">
                         <span>Taller<span class="text-red-600">ST</span></span>
                     </a>
                 </div>
                 
                 <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8 items-center">
+                <div class="hidden md:flex space-x-8 items-center text-slate-700">
                     <a href="#inicio" class="hover:text-red-600 transition-colors font-medium">Inicio</a>
                     <a href="#servicios" class="hover:text-red-600 transition-colors font-medium">Servicios</a>
                     <a href="#ubicacion" class="hover:text-red-600 transition-colors font-medium">Ubicación</a>
@@ -78,7 +78,7 @@
 
                 <!-- Mobile menu button -->
                 <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-white hover:text-red-600 focus:outline-none p-2">
+                    <button id="mobile-menu-btn" class="text-navy hover:text-red-600 focus:outline-none p-2">
                         <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                         </svg>
@@ -88,12 +88,12 @@
         </div>
 
         <!-- Mobile Menu Panel -->
-        <div id="mobile-menu" class="hidden md:hidden bg-navy-light border-t border-slate-700">
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 shadow-xl">
             <div class="px-4 pt-2 pb-6 space-y-2">
-                <a href="#inicio" class="block px-3 py-3 text-base font-medium hover:bg-navy hover:text-red-600 rounded-md transition-colors mobile-link">Inicio</a>
-                <a href="#servicios" class="block px-3 py-3 text-base font-medium hover:bg-navy hover:text-red-600 rounded-md transition-colors mobile-link">Servicios</a>
-                <a href="#ubicacion" class="block px-3 py-3 text-base font-medium hover:bg-navy hover:text-red-600 rounded-md transition-colors mobile-link">Ubicación</a>
-                <a href="#contacto" class="block px-3 py-3 mt-4 text-center text-base font-bold bg-red-600 hover:bg-red-700 rounded-md transition-colors mobile-link">Pedir Turno</a>
+                <a href="#inicio" class="block px-3 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-red-600 rounded-md transition-colors mobile-link">Inicio</a>
+                <a href="#servicios" class="block px-3 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-red-600 rounded-md transition-colors mobile-link">Servicios</a>
+                <a href="#ubicacion" class="block px-3 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-red-600 rounded-md transition-colors mobile-link">Ubicación</a>
+                <a href="#contacto" class="block px-3 py-3 mt-4 text-center text-base font-bold text-white bg-red-600 hover:bg-red-700 rounded-md transition-colors mobile-link">Pedir Turno</a>
             </div>
         </div>
     </nav>
@@ -185,7 +185,7 @@
                     <h2 class="text-3xl md:text-4xl font-extrabold text-navy mb-4">¿Dónde nos encontramos?</h2>
                     <div class="w-20 h-1 bg-red-600 rounded-full mb-6"></div>
                     <p class="text-lg text-slate-600 mb-8">
-                        Trae tu auto a nuestro taller. Contamos con equipamiento para brindarte el mejor servicio.
+                        Trae tu auto a nuestro taller. Contamos con instalaciones modernas y equipamiento de última generación para brindarte el mejor servicio.
                     </p>
                     
                     <div class="space-y-6">
@@ -285,22 +285,22 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-navy-light pt-12 pb-6 border-t border-slate-800">
+    <footer class="bg-white pt-12 pb-6 border-t border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-                <div class="flex items-center gap-2">
-                    <span class="text-red-600 text-2xl">⚙️</span>
-                    <span class="text-white text-xl font-bold">Taller<span class="text-red-600">ST</span></span>
+                <div class="flex items-center gap-2 text-navy">
+                    <img src="logo.png" alt="Logo Taller ST" class="h-10 w-auto object-contain">
+                    <span class="text-xl font-bold">Taller<span class="text-red-600">ST</span></span>
                 </div>
                 
-                <div class="flex gap-6 text-sm text-slate-400">
+                <div class="flex gap-6 text-sm text-slate-600 font-medium">
                     <a href="#inicio" class="hover:text-red-600 transition-colors">Inicio</a>
                     <a href="#servicios" class="hover:text-red-600 transition-colors">Servicios</a>
                     <a href="#ubicacion" class="hover:text-red-600 transition-colors">Ubicación</a>
                 </div>
             </div>
             
-            <div class="mt-8 pt-8 border-t border-slate-700 text-center text-slate-500 text-sm">
+            <div class="mt-8 pt-8 border-t border-slate-200 text-center text-slate-500 text-sm">
                 &copy; <span id="currentYear"></span> Taller Mecánico ST. Todos los derechos reservados.
             </div>
         </div>
@@ -343,11 +343,11 @@
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
             if (window.scrollY > 20) {
-                nav.classList.add('shadow-lg', 'bg-navy/95', 'backdrop-blur-sm');
-                nav.classList.remove('bg-navy');
+                nav.classList.add('shadow-lg', 'bg-white/95', 'backdrop-blur-sm');
+                nav.classList.remove('bg-white', 'shadow-sm');
             } else {
-                nav.classList.add('bg-navy');
-                nav.classList.remove('shadow-lg', 'bg-navy/95', 'backdrop-blur-sm');
+                nav.classList.add('bg-white', 'shadow-sm');
+                nav.classList.remove('shadow-lg', 'bg-white/95', 'backdrop-blur-sm');
             }
         });
 
@@ -380,5 +380,4 @@
         });
     </script>
 </body>
-
 </html>
