@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taller Mecánico ST | Expertos en tu vehículo</title>
+    <meta name="description" content="Taller Mecánico ST. Ofrecemos mecánica ligera, tren delantero, frenos, diagnóstico y más. ¡Contactanos hoy!">
+    
+    <!-- Tailwind CSS (via CDN para un solo archivo) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuración de colores de Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#0a192f', // Azul marino profundo
+                        'navy-light': '#112240',
+                        red: {
+                            600: '#dc2626', // Rojo vibrante
+                            700: '#b91c1c', // Rojo oscuro (hover)
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Estilos adicionales y optimizaciones */
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f8fafc; /* Fondo general muy claro */
+        }
+        
+        .hero-bg {
+            background-image: linear-gradient(rgba(10, 25, 47, 0.7), rgba(10, 25, 47, 0.8)), url('https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Efecto parallax suave */
+        }
+
+        /* Ocultar barra de desplazamiento en textarea pero permitir scroll */
+        textarea::-webkit-scrollbar {
+            width: 8px;
+        }
+        textarea::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        textarea::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased selection:bg-red-600 selection:text-white">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-navy text-white shadow-lg transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-2xl font-bold flex items-center gap-2">
+                        <span class="text-red-600 text-3xl">⚙️</span>
+                        <span>Taller<span class="text-red-600">ST</span></span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#inicio" class="hover:text-red-600 transition-colors font-medium">Inicio</a>
+                    <a href="#servicios" class="hover:text-red-600 transition-colors font-medium">Servicios</a>
+                    <a href="#ubicacion" class="hover:text-red-600 transition-colors font-medium">Ubicación</a>
+                    <a href="#contacto" class="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-full font-bold transition-colors shadow-md shadow-red-600/30">Turnos / Consultas</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-white hover:text-red-600 focus:outline-none p-2">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-navy-light border-t border-slate-700">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#inicio" class="block px-3 py-3 text-base font-medium hover:bg-navy hover:text-red-600 rounded-md transition-colors mobile-link">Inicio</a>
+                <a href="#servicios" class="block px-3 py-3 text-base font-medium hover:bg-navy hover:text-red-600 rounded-md transition-colors mobile-link">Servicios</a>
+                <a href="#ubicacion" class="block px-3 py-3 text-base font-medium hover:bg-navy hover:text-red-600 rounded-md transition-colors mobile-link">Ubicación</a>
+                <a href="#contacto" class="block px-3 py-3 mt-4 text-center text-base font-bold bg-red-600 hover:bg-red-700 rounded-md transition-colors mobile-link">Pedir Turno</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-bg min-h-[90vh] flex items-center pt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="max-w-2xl">
+                <span class="inline-block py-1 px-3 rounded-full bg-red-600/20 text-red-500 font-semibold text-sm mb-4 border border-red-600/30 backdrop-blur-sm">Atención de primera línea</span>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
+                    Soluciones reales para tu <span class="text-red-600">vehículo</span>.
+                </h1>
+                <p class="text-lg md:text-xl text-slate-300 mb-8 max-w-lg leading-relaxed">
+                    Confianza, tecnología y experiencia a tu servicio. Nos ocupamos de que vuelvas a la ruta de forma rápida y segura.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#contacto" class="text-center bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all shadow-lg shadow-red-600/40 hover:-translate-y-1">
+                        Pedir Presupuesto
+                    </a>
+                    <a href="#servicios" class="text-center bg-transparent border-2 border-white hover:bg-white hover:text-navy text-white px-8 py-4 rounded-lg font-bold text-lg transition-all hover:-translate-y-1">
+                        Ver Servicios
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios Section -->
+    <section id="servicios" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-navy mb-4">Nuestros Servicios</h2>
+                <div class="w-20 h-1 bg-red-600 mx-auto rounded-full"></div>
+                <p class="mt-4 text-slate-600 max-w-2xl mx-auto text-lg">Ofrecemos un servicio integral para cubrir todas las necesidades de tu auto en un solo lugar.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Servicio 1 -->
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-xl hover:border-red-200 transition-all group">
+                    <div class="w-14 h-14 bg-navy text-white rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-red-600 transition-colors">🛢️</div>
+                    <h3 class="text-xl font-bold text-navy mb-3">Mecánica Ligera</h3>
+                    <p class="text-slate-600 leading-relaxed">Mantenimiento preventivo, cambio de aceite y filtros, revisión de fluidos y estado de correas para prolongar la vida del motor.</p>
+                </div>
+
+                <!-- Servicio 2 -->
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-xl hover:border-red-200 transition-all group">
+                    <div class="w-14 h-14 bg-navy text-white rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-red-600 transition-colors">⚙️</div>
+                    <h3 class="text-xl font-bold text-navy mb-3">Tren Delantero y Trasero</h3>
+                    <p class="text-slate-600 leading-relaxed">Revisión y cambio de amortiguadores, espirales, bujes y componentes de suspensión para una marcha suave y estable.</p>
+                </div>
+
+                <!-- Servicio 3 -->
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-xl hover:border-red-200 transition-all group">
+                    <div class="w-14 h-14 bg-navy text-white rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-red-600 transition-colors">🛑</div>
+                    <h3 class="text-xl font-bold text-navy mb-3">Sistema de Frenos</h3>
+                    <p class="text-slate-600 leading-relaxed">Cambio de pastillas, discos, rectificado y purgado del sistema. Vital para garantizar tu seguridad en cada detención.</p>
+                </div>
+
+                <!-- Servicio 4 -->
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-xl hover:border-red-200 transition-all group">
+                    <div class="w-14 h-14 bg-navy text-white rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-red-600 transition-colors">💻</div>
+                    <h3 class="text-xl font-bold text-navy mb-3">Inyección y Diagnóstico</h3>
+                    <p class="text-slate-600 leading-relaxed">Escaneo computarizado avanzado para detectar fallas electrónicas, limpieza de inyectores y reseteo de testigos del tablero.</p>
+                </div>
+
+                <!-- Servicio 5 -->
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-xl hover:border-red-200 transition-all group">
+                    <div class="w-14 h-14 bg-navy text-white rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-red-600 transition-colors">🔧</div>
+                    <h3 class="text-xl font-bold text-navy mb-3">Motor y Distribución</h3>
+                    <p class="text-slate-600 leading-relaxed">Mecánica pesada: cambio de kit de distribución (correa, bomba de agua), tapas de cilindro, embragues y ajustes mayores.</p>
+                </div>
+
+                <!-- Servicio 6 -->
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-xl hover:border-red-200 transition-all group">
+                    <div class="w-14 h-14 bg-navy text-white rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-red-600 transition-colors">⚡</div>
+                    <h3 class="text-xl font-bold text-navy mb-3">Alineación y Balanceo</h3>
+                    <p class="text-slate-600 leading-relaxed">Ajuste de ángulos de ruedas y equilibrio de neumáticos para evitar desgastes irregulares y vibraciones al conducir.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mapa Interactivo & Ubicación Section -->
+    <section id="ubicacion" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-navy mb-4">¿Dónde nos encontramos?</h2>
+                    <div class="w-20 h-1 bg-red-600 rounded-full mb-6"></div>
+                    <p class="text-lg text-slate-600 mb-8">
+                        Trae tu auto a nuestro taller. Contamos con instalaciones modernas y equipamiento de última generación para brindarte el mejor servicio.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-white p-3 rounded-full shadow-md text-red-600">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-navy text-lg">Dirección</h4>
+                                <p class="text-slate-600">
+                                    Cabo Alfredo Alejandro Gonzalez 1547<br>
+                                    <span class="text-sm">Esquina Río Coyle y Cincinnati</span><br>
+                                    <span class="text-sm text-slate-500 italic">A metros de Av. Circunvalación Agustín Tosco • Córdoba</span>
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4">
+                            <div class="bg-white p-3 rounded-full shadow-md text-red-600">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-navy text-lg">Horarios de Atención</h4>
+                                <p class="text-slate-600">Lunes a Viernes: 08:00 - 18:00 hs<br>Sábados: 09:00 - 13:00 hs</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Google Maps Iframe (Responsivo) -->
+                <div class="rounded-2xl overflow-hidden shadow-2xl h-80 lg:h-[450px] border-4 border-white">
+                    <iframe src="https://www.google.com/maps?q=Cabo+Alfredo+Alejandro+Gonzalez+1547,+Cordoba,+Argentina&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto / WhatsApp Form Section -->
+    <section id="contacto" class="py-20 bg-navy relative overflow-hidden">
+        <!-- Decoración de fondo -->
+        <div class="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-red-600 rounded-full blur-3xl opacity-20"></div>
+        <div class="absolute bottom-0 left-0 -mb-20 -ml-20 w-80 h-80 bg-blue-500 rounded-full blur-3xl opacity-20"></div>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">¿Necesitas un turno o presupuesto?</h2>
+                <p class="text-slate-300 text-lg">Completa el formulario y te responderemos por WhatsApp a la brevedad.</p>
+            </div>
+
+            <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-2xl">
+                <form id="whatsappForm" class="space-y-6">
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Nombre -->
+                        <div>
+                            <label for="nombre" class="block text-sm font-semibold text-navy mb-2">Nombre y Apellido</label>
+                            <input type="text" id="nombre" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-red-600 focus:border-red-600 outline-none transition-colors bg-slate-50" placeholder="Ej: Juan Pérez">
+                        </div>
+                        
+                        <!-- Teléfono -->
+                        <div>
+                            <label for="telefono" class="block text-sm font-semibold text-navy mb-2">Tu número de teléfono</label>
+                            <input type="tel" id="telefono" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-red-600 focus:border-red-600 outline-none transition-colors bg-slate-50" placeholder="Ej: 3512345678">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Modelo del Auto -->
+                        <div>
+                            <label for="modelo" class="block text-sm font-semibold text-navy mb-2">Modelo del Vehículo</label>
+                            <input type="text" id="modelo" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-red-600 focus:border-red-600 outline-none transition-colors bg-slate-50" placeholder="Ej: Volkswagen Gol Trend">
+                        </div>
+                        
+                        <!-- Año del Auto -->
+                        <div>
+                            <label for="anio" class="block text-sm font-semibold text-navy mb-2">Año del Vehículo</label>
+                            <input type="number" id="anio" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-red-600 focus:border-red-600 outline-none transition-colors bg-slate-50" placeholder="Ej: 2018">
+                        </div>
+                    </div>
+
+                    <!-- Consulta -->
+                    <div>
+                        <label for="consulta" class="block text-sm font-semibold text-navy mb-2">¿Cuál es tu consulta o problema?</label>
+                        <textarea id="consulta" rows="4" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-red-600 focus:border-red-600 outline-none transition-colors bg-slate-50 resize-none" placeholder="Ej: Necesito presupuesto para cambio de distribución y aceite..."></textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold text-lg py-4 rounded-xl transition-all flex justify-center items-center gap-2 shadow-lg shadow-green-500/30 hover:-translate-y-1">
+                        <!-- WhatsApp Icon SVG -->
+                        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12.031 0C5.385 0 0 5.386 0 12.031c0 2.126.549 4.192 1.593 6.015L.175 23.504l5.6-1.472a12.016 12.016 0 006.256 1.745c6.645 0 12.03-5.385 12.03-12.03S18.676 0 12.031 0zm0 21.782c-1.801 0-3.565-.483-5.111-1.4l-.367-.217-3.793.997 1.018-3.7-.238-.38a9.982 9.982 0 01-1.539-5.347c0-5.522 4.494-10.017 10.03-10.017 5.524 0 10.016 4.495 10.016 10.017 0 5.523-4.492 10.017-10.016 10.017zm5.496-7.513c-.301-.151-1.782-.88-2.059-.98-.277-.1-.478-.151-.68.151-.202.302-.78 1.002-.955 1.203-.176.202-.352.227-.653.076-1.921-.945-3.08-2.013-4.264-3.834-.126-.196-.013-.306.138-.455.136-.135.302-.353.453-.53.151-.176.202-.302.302-.503.1-.202.05-.378-.025-.53-.076-.151-.68-1.637-.93-2.242-.244-.593-.49-.512-.68-.521-.175-.01-.378-.01-.58-.01-.202 0-.528.076-.805.378-.277.302-1.055 1.03-1.055 2.515 0 1.485 1.08 2.92 1.231 3.12.151.202 2.13 3.251 5.161 4.56.721.311 1.284.497 1.724.637.724.229 1.383.197 1.9.119.58-.088 1.782-.729 2.034-1.433.252-.704.252-1.308.176-1.434-.076-.126-.277-.202-.578-.352z"></path></svg>
+                        Enviar mensaje por WhatsApp
+                    </button>
+                    <p class="text-xs text-center text-slate-500 mt-4">Tus datos están seguros y no los compartiremos con terceros.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-navy-light pt-12 pb-6 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-2">
+                    <span class="text-red-600 text-2xl">⚙️</span>
+                    <span class="text-white text-xl font-bold">Taller<span class="text-red-600">ST</span></span>
+                </div>
+                
+                <div class="flex gap-6 text-sm text-slate-400">
+                    <a href="#inicio" class="hover:text-red-600 transition-colors">Inicio</a>
+                    <a href="#servicios" class="hover:text-red-600 transition-colors">Servicios</a>
+                    <a href="#ubicacion" class="hover:text-red-600 transition-colors">Ubicación</a>
+                </div>
+            </div>
+            
+            <div class="mt-8 pt-8 border-t border-slate-700 text-center text-slate-500 text-sm">
+                &copy; <span id="currentYear"></span> Taller Mecánico ST. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón Flotante de WhatsApp -->
+    <a href="https://wa.me/5493516337136?text=%C2%A1Hola!%20Me%20contacto%20desde%20la%20p%C3%A1gina%20web%20y%20quisiera%20hacer%20una%20consulta." 
+       target="_blank" 
+       rel="noopener noreferrer"
+       class="fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:bg-[#128C7E] transition-all hover:-translate-y-2 z-50 flex items-center justify-center group animate-bounce hover:animate-none">
+        <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24"><path d="M12.031 0C5.385 0 0 5.386 0 12.031c0 2.126.549 4.192 1.593 6.015L.175 23.504l5.6-1.472a12.016 12.016 0 006.256 1.745c6.645 0 12.03-5.385 12.03-12.03S18.676 0 12.031 0zm0 21.782c-1.801 0-3.565-.483-5.111-1.4l-.367-.217-3.793.997 1.018-3.7-.238-.38a9.982 9.982 0 01-1.539-5.347c0-5.522 4.494-10.017 10.03-10.017 5.524 0 10.016 4.495 10.016 10.017 0 5.523-4.492 10.017-10.016 10.017zm5.496-7.513c-.301-.151-1.782-.88-2.059-.98-.277-.1-.478-.151-.68.151-.202.302-.78 1.002-.955 1.203-.176.202-.352.227-.653.076-1.921-.945-3.08-2.013-4.264-3.834-.126-.196-.013-.306.138-.455.136-.135.302-.353.453-.53.151-.176.202-.302.302-.503.1-.202.05-.378-.025-.53-.076-.151-.68-1.637-.93-2.242-.244-.593-.49-.512-.68-.521-.175-.01-.378-.01-.58-.01-.202 0-.528.076-.805.378-.277.302-1.055 1.03-1.055 2.515 0 1.485 1.08 2.92 1.231 3.12.151.202 2.13 3.251 5.161 4.56.721.311 1.284.497 1.724.637.724.229 1.383.197 1.9.119.58-.088 1.782-.729 2.034-1.433.252-.704.252-1.308.176-1.434-.076-.126-.277-.202-.578-.352z"></path></svg>
+        <!-- Tooltip -->
+        <span class="absolute right-16 bg-white text-navy px-3 py-1.5 rounded-lg text-sm font-bold shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap before:content-[''] before:absolute before:top-1/2 before:-right-2 before:-translate-y-1/2 before:border-4 before:border-transparent before:border-l-white">
+            ¡Chateá con nosotros!
+        </span>
+    </a>
+
+    <!-- Scripts de interactividad -->
+    <script>
+        // Actualizar el año en el footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Lógica del Menú Móvil
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Cerrar menú móvil al hacer click en un enlace
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Cambio de estilo del Navbar al hacer scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 20) {
+                nav.classList.add('shadow-lg', 'bg-navy/95', 'backdrop-blur-sm');
+                nav.classList.remove('bg-navy');
+            } else {
+                nav.classList.add('bg-navy');
+                nav.classList.remove('shadow-lg', 'bg-navy/95', 'backdrop-blur-sm');
+            }
+        });
+
+        // Lógica de Envío a WhatsApp
+        document.getElementById('whatsappForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Evita que la página se recargue
+            
+            // NUMERO DE WHATSAPP DEL TALLER (Cambiar por el real incluyendo código de país)
+            // Ejemplo: 5493510000000 (Argentina, Córdoba)
+            const numeroTaller = '5493516337136'; 
+
+            // Obtener valores del formulario
+            const nombre = document.getElementById('nombre').value;
+            const telefono = document.getElementById('telefono').value;
+            const modelo = document.getElementById('modelo').value;
+            const anio = document.getElementById('anio').value;
+            const consulta = document.getElementById('consulta').value;
+
+            // Construir el mensaje formateado
+            const mensaje = `¡Hola Taller ST! 👋\n\nMi nombre es *${nombre}*.\nMe comunico por el siguiente vehículo:\n🚘 *Modelo:* ${modelo}\n📅 *Año:* ${anio}\n📞 *Mi número:* ${telefono}\n\n*Consulta/Problema:*\n${consulta}`;
+
+            // Codificar el mensaje para la URL
+            const mensajeCodificado = encodeURIComponent(mensaje);
+
+            // Crear la URL de WhatsApp
+            const urlWhatsApp = `https://wa.me/${numeroTaller}?text=${mensajeCodificado}`;
+
+            // Abrir WhatsApp en una nueva pestaña
+            window.open(urlWhatsApp, '_blank');
+        });
+    </script>
+</body>
+</html>
