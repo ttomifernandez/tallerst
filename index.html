@@ -4,30 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taller Mecánico ST | Expertos en tu vehículo</title>
-    <meta name="description" content="Taller Mecánico ST. Ofrecemos mecánica ligera, tren delantero, frenos, diagnóstico y más.">
     
-    <!-- Metaetiquetas para compartir -->
-    <meta property="og:title" content="Taller Mecánico ST | Expertos en tu vehículo">
-    <meta property="og:description" content="Especialistas en mecánica ligera, tren delantero, frenos y diagnóstico.">
-    <meta property="og:image" content="logo.webp"> 
-    <meta property="og:type" content="website">
-
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- jsPDF para generación de documentos -->
+    <!-- jsPDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
                     colors: {
-                        navy: '#0a192f',
-                        'navy-light': '#112240',
-                        red: {
-                            600: '#dc2626',
-                            700: '#b91c1c',
+                        navy: {
+                            DEFAULT: '#0a192f',
+                            light: '#112240',
+                            dark: '#020c1b'
+                        },
+                        brand: {
+                            red: '#dc2626',
+                            redHover: '#b91c1c'
                         }
                     }
                 }
@@ -36,334 +41,388 @@
     </script>
 
     <style>
-        body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f8fafc;
+        .glass-nav {
+            background: rgba(10, 25, 47, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
         
-        .hero-bg {
-            background-image: linear-gradient(rgba(10, 25, 47, 0.7), rgba(10, 25, 47, 0.8)), url('https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+        .hero-overlay {
+            background: linear-gradient(to right, rgba(10, 25, 47, 0.95) 30%, rgba(10, 25, 47, 0.7) 100%);
         }
 
-        /* Estilo de Inputs SIMPLE y PROLIJO con buen padding */
+        /* Input Prolijo Refinado */
         .input-prolijo {
-            @apply w-full px-6 py-4 rounded-2xl border border-slate-300 bg-white text-navy font-medium outline-none transition-all duration-200 shadow-sm placeholder:text-slate-400 block;
-        }
-        .input-prolijo:focus {
-            @apply border-red-600 ring-4 ring-red-600/5 shadow-md;
+            @apply w-full px-4 py-3 rounded-xl border-2 border-slate-200 bg-white text-navy font-medium outline-none transition-all duration-200 focus:border-brand-red focus:ring-4 focus:ring-brand-red/5 placeholder:text-slate-400 text-sm;
         }
 
         .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
         @keyframes slideUp {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .animate-slideUp { animation: slideUp 0.3s ease-out forwards; }
+        .animate-slideUp { animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
     </style>
 </head>
-<body class="text-slate-800 antialiased selection:bg-red-600 selection:text-white">
+<body class="font-sans text-slate-800 bg-slate-50 antialiased selection:bg-brand-red selection:text-white">
 
-    <!-- Navbar -->
-    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md text-navy shadow-sm transition-all duration-300" id="navbar">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav text-white border-b border-white/5 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <div class="flex-shrink-0 flex items-center">
-                    <a href="#" class="text-2xl font-bold flex items-center gap-3 text-navy">
-                        <img src="logo.webp" id="main-logo" alt="Logo Taller ST" class="h-11 w-auto object-contain" crossorigin="anonymous" onerror="this.src='https://via.placeholder.com/50x50?text=ST'">
-                        <span class="tracking-tight">Taller<span class="text-red-600">ST</span></span>
-                    </a>
+                <div class="flex-shrink-0 flex items-center gap-3">
+                    <img src="logo.webp" id="main-logo" alt="Logo Taller ST" class="h-10 w-auto object-contain" crossorigin="anonymous" onerror="this.src='https://via.placeholder.com/50x50?text=ST'">
+                    <span class="font-extrabold text-2xl tracking-tighter italic uppercase">Taller<span class="text-brand-red">ST</span></span>
                 </div>
                 
-                <div class="hidden md:flex space-x-8 items-center text-slate-700">
-                    <a href="#inicio" class="hover:text-red-600 transition-colors font-medium">Inicio</a>
-                    <a href="#servicios" class="hover:text-red-600 transition-colors font-medium">Servicios</a>
-                    <a href="#ubicacion" class="hover:text-red-600 transition-colors font-medium">Ubicación</a>
-                    <a href="#contacto" class="bg-red-600 hover:bg-red-700 text-white px-7 py-2.5 rounded-full font-bold transition-all shadow-lg shadow-red-600/20">Pedir Turno</a>
+                <div class="hidden md:flex space-x-8 items-center font-semibold text-xs tracking-widest uppercase">
+                    <a href="#inicio" class="text-slate-300 hover:text-white transition-colors">Inicio</a>
+                    <a href="#servicios" class="text-slate-300 hover:text-white transition-colors">Servicios</a>
+                    <a href="#ubicacion" class="text-slate-300 hover:text-white transition-colors">Ubicación</a>
+                    <a href="#contacto" class="bg-brand-red hover:bg-brand-redHover text-white px-6 py-2.5 rounded-lg transition-all shadow-lg shadow-brand-red/20 active:scale-95 flex items-center gap-2">
+                        <i data-lucide="calendar" class="w-4 h-4"></i>
+                        Pedir Turno
+                    </a>
                 </div>
 
                 <div class="md:hidden">
-                    <button id="mobile-menu-btn" class="text-navy p-2">
-                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                        </svg>
+                    <button id="mobile-menu-btn" class="text-white p-2">
+                        <i data-lucide="menu" class="h-7 w-7"></i>
                     </button>
                 </div>
             </div>
         </div>
-
+        
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 shadow-xl">
-            <div class="px-4 pt-2 pb-6 space-y-2">
-                <a href="#inicio" class="block px-3 py-3 text-base font-medium text-slate-700 hover:text-red-600 mobile-link">Inicio</a>
-                <a href="#servicios" class="block px-3 py-3 text-base font-medium text-slate-700 hover:text-red-600 mobile-link">Servicios</a>
-                <a href="#ubicacion" class="block px-3 py-3 text-base font-medium text-slate-700 hover:text-red-600 mobile-link">Ubicación</a>
-                <a href="#contacto" class="block px-3 py-3 mt-4 text-center text-base font-bold text-white bg-red-600 rounded-md mobile-link">Pedir Turno</a>
-            </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-navy-dark border-t border-white/5 p-4 space-y-2">
+            <a href="#inicio" class="block px-4 py-3 text-slate-300 hover:text-white mobile-link">Inicio</a>
+            <a href="#servicios" class="block px-4 py-3 text-slate-300 hover:text-white mobile-link">Servicios</a>
+            <a href="#ubicacion" class="block px-4 py-3 text-slate-300 hover:text-white mobile-link">Ubicación</a>
+            <a href="#contacto" class="block bg-brand-red text-white text-center py-4 rounded-xl font-bold mobile-link">Agendar por WhatsApp</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="inicio" class="hero-bg min-h-[90vh] flex items-center pt-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-            <div class="max-w-2xl">
-                <span class="inline-block py-1.5 px-4 rounded-full bg-red-600/20 text-red-500 font-bold text-xs uppercase tracking-widest mb-6 border border-red-600/30 backdrop-blur-md">Calidad Garantizada</span>
-                <h1 class="text-5xl md:text-7xl font-black text-white leading-[1.1] mb-8 tracking-tighter">
-                    Soluciones reales para tu <span class="text-red-600">vehículo</span>.
+    <section id="inicio" class="relative min-h-screen flex items-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Background" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 hero-overlay"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="max-w-2xl text-white animate-slideUp">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-bold mb-8 text-slate-200 backdrop-blur-md uppercase tracking-widest">
+                    <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                    Taller Abierto - Atención Inmediata
+                </div>
+                <h1 class="text-5xl md:text-7xl font-black tracking-tighter mb-6 leading-[1.1] italic uppercase">
+                    Tu vehículo en <br/><span class="text-brand-red">manos expertas.</span>
                 </h1>
-                <p class="text-xl text-slate-300 mb-10 max-w-lg leading-relaxed font-medium">
-                    Experiencia técnica y herramientas de precisión para que tu vehículo esté siempre en perfectas condiciones.
+                <p class="text-lg md:text-xl text-slate-300 mb-10 max-w-lg leading-relaxed font-medium">
+                    Mecánica integral de precisión, diagnóstico computarizado y mantenimiento preventivo con atención certificada.
                 </p>
-                
                 <div class="flex flex-col sm:flex-row gap-5">
-                    <a href="#contacto" class="text-center bg-red-600 hover:bg-red-700 text-white px-10 py-5 rounded-2xl font-bold text-lg transition-all shadow-xl shadow-red-600/40 hover:-translate-y-1">
-                        Agendar Turno
+                    <a href="#contacto" class="bg-brand-red hover:bg-brand-redHover text-white px-10 py-5 rounded-2xl font-black text-lg transition-all shadow-2xl shadow-brand-red/40 flex items-center justify-center gap-3 active:scale-95">
+                        <i data-lucide="message-square" class="w-6 h-6"></i>
+                        Pedir Presupuesto
                     </a>
-                    <a href="#servicios" class="text-center bg-white/5 border border-white/20 hover:bg-white/10 backdrop-blur-sm text-white px-10 py-5 rounded-2xl font-bold text-lg transition-all hover:-translate-y-1">
-                        Ver Servicios
+                    <a href="tel:+5493516337136" class="bg-white/10 hover:bg-white/20 border border-white/20 text-white px-10 py-5 rounded-2xl font-black text-lg transition-all flex items-center justify-center gap-3 backdrop-blur-md">
+                        <i data-lucide="phone-call" class="w-6 h-6"></i>
+                        Llamar Ahora
                     </a>
+                </div>
+                
+                <div class="mt-12 flex items-center gap-8 text-sm text-slate-400 font-bold uppercase tracking-wider">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="check-circle" class="w-5 h-5 text-brand-red"></i>
+                        <span>Atención Inmediata</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="check-circle" class="w-5 h-5 text-brand-red"></i>
+                        <span>Repuestos Originales</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Servicios -->
-    <section id="servicios" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-4xl font-black text-navy mb-4 tracking-tight">Nuestros Servicios</h2>
-            <div class="w-16 h-1.5 bg-red-600 mx-auto rounded-full mb-16"></div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <div class="group p-10 rounded-[2.5rem] bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-2xl transition-all duration-500">
-                    <div class="w-16 h-16 bg-navy text-white rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:bg-red-600 transition-colors shadow-lg">🛢️</div>
-                    <h3 class="text-2xl font-bold text-navy mb-4">Mecánica Integral</h3>
-                    <p class="text-slate-500 leading-relaxed">Mantenimiento preventivo, cambio de aceites, filtros y chequeo general de fluidos.</p>
-                </div>
-                <div class="group p-10 rounded-[2.5rem] bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-2xl transition-all duration-500">
-                    <div class="w-16 h-16 bg-navy text-white rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:bg-red-600 transition-colors shadow-lg">⚙️</div>
-                    <h3 class="text-2xl font-bold text-navy mb-4">Tren Delantero</h3>
-                    <p class="text-slate-500 leading-relaxed">Suspensión, amortiguadores y alineación para una conducción suave y segura.</p>
-                </div>
-                <div class="group p-10 rounded-[2.5rem] bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-2xl transition-all duration-500">
-                    <div class="w-16 h-16 bg-navy text-white rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:bg-red-600 transition-colors shadow-lg">🛑</div>
-                    <h3 class="text-2xl font-bold text-navy mb-4">Frenos</h3>
-                    <p class="text-slate-500 leading-relaxed">Cambio de pastillas, rectificado de discos y purgado de sistemas hidráulicos.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Ubicación -->
-    <section id="ubicacion" class="py-24 bg-slate-50">
+    <!-- Servicios Section -->
+    <section id="servicios" class="py-32 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-white p-6 md:p-12 rounded-[3rem] shadow-sm border border-slate-100 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div>
-                    <h2 class="text-4xl font-black text-navy mb-6 tracking-tight">¿Dónde estamos?</h2>
-                    <p class="text-xl text-slate-600 mb-10 leading-relaxed">Cabo Alfredo Alejandro Gonzalez 1547. Córdoba, Argentina.</p>
-                    <div class="space-y-6">
-                        <div class="flex items-center gap-5 p-5 bg-slate-50 rounded-2xl border border-slate-100">
-                            <span class="text-2xl">📍</span>
-                            <div>
-                                <h4 class="font-bold text-navy">Dirección</h4>
-                                <p class="text-slate-500 text-sm">Cabo Alfredo Gonzalez 1547, Córdoba.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-5 p-5 bg-slate-50 rounded-2xl border border-slate-100">
-                            <span class="text-2xl">⏰</span>
-                            <div>
-                                <h4 class="font-bold text-navy">Horarios</h4>
-                                <p class="text-slate-500 text-sm">Lunes a Viernes de 08:00 a 18:00 hs.</p>
-                            </div>
-                        </div>
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <h2 class="text-brand-red font-black uppercase tracking-[0.3em] text-xs mb-4">Especialidades</h2>
+                <h3 class="text-4xl md:text-5xl font-black text-navy tracking-tight italic uppercase">Servicios Profesionales</h3>
+                <div class="w-20 h-1.5 bg-brand-red mx-auto rounded-full mt-6"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service Card 1 -->
+                <div class="bg-slate-50 p-10 rounded-[2.5rem] border border-slate-100 hover:shadow-xl hover:bg-white hover:border-brand-red/20 transition-all duration-500 group">
+                    <div class="w-14 h-14 bg-navy text-white rounded-2xl flex items-center justify-center mb-8 group-hover:bg-brand-red transition-all duration-500 shadow-xl">
+                        <i data-lucide="settings" class="w-7 h-7"></i>
                     </div>
+                    <h4 class="text-2xl font-black text-navy mb-4 tracking-tight uppercase italic">Mecánica Integral</h4>
+                    <p class="text-slate-500 font-medium leading-relaxed">Reparación de motores, embragues, correas y mantenimiento general del vehículo.</p>
                 </div>
-                <div class="rounded-[2.5rem] overflow-hidden shadow-2xl h-96 border-[8px] border-slate-50">
-                    <iframe src="https://www.google.com/maps?q=Cabo+Alfredo+Alejandro+Gonzalez+1547,+Cordoba,+Argentina&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <!-- Service Card 2 -->
+                <div class="bg-slate-50 p-10 rounded-[2.5rem] border border-slate-100 hover:shadow-xl hover:bg-white hover:border-brand-red/20 transition-all duration-500 group">
+                    <div class="w-14 h-14 bg-navy text-white rounded-2xl flex items-center justify-center mb-8 group-hover:bg-brand-red transition-all duration-500 shadow-xl">
+                        <i data-lucide="activity" class="w-7 h-7"></i>
+                    </div>
+                    <h4 class="text-2xl font-black text-navy mb-4 tracking-tight uppercase italic">Suspensión</h4>
+                    <p class="text-slate-500 font-medium leading-relaxed">Tren delantero, amortiguadores y alineación de precisión para un andar estable.</p>
+                </div>
+                <!-- Service Card 3 -->
+                <div class="bg-slate-50 p-10 rounded-[2.5rem] border border-slate-100 hover:shadow-xl hover:bg-white hover:border-brand-red/20 transition-all duration-500 group">
+                    <div class="w-14 h-14 bg-navy text-white rounded-2xl flex items-center justify-center mb-8 group-hover:bg-brand-red transition-all duration-500 shadow-xl">
+                        <i data-lucide="zap" class="w-7 h-7"></i>
+                    </div>
+                    <h4 class="text-2xl font-black text-navy mb-4 tracking-tight uppercase italic">Frenos y ABS</h4>
+                    <p class="text-slate-500 font-medium leading-relaxed">Cambio de pastillas, rectificado de discos y purgado de sistemas hidráulicos.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Formulario Homepage (CON REPARACIONES) -->
-    <section id="contacto" class="py-24 bg-navy relative overflow-hidden">
-        <div class="max-w-4xl mx-auto px-4 relative z-10">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-black text-white mb-4 tracking-tight">Contáctanos</h2>
-                <p class="text-slate-400 font-medium">Completá el formulario para recibir un presupuesto vía WhatsApp.</p>
-            </div>
-            <div class="bg-white rounded-[3rem] p-10 md:p-14 shadow-2xl">
-                <form id="whatsappForm" class="space-y-8">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="space-y-2">
-                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-2">Nombre</label>
-                            <input type="text" id="nombre" required class="input-prolijo" placeholder="Ej: Juan Pérez">
-                        </div>
-                        <div class="space-y-2">
-                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-2">Teléfono</label>
-                            <input type="tel" id="telefono" required class="input-prolijo" placeholder="Ej: 3512345678">
+    <!-- Nosotros Section (Trust) -->
+    <section class="py-32 bg-slate-50 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-1/2 relative">
+                    <div class="absolute -top-6 -left-6 w-32 h-32 bg-brand-red/10 rounded-3xl -z-10"></div>
+                    <img src="https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Work" class="rounded-[2.5rem] shadow-2xl object-cover w-full h-[500px] border-4 border-white" />
+                    <div class="absolute bottom-8 -left-8 bg-white p-6 rounded-2xl shadow-xl flex items-center gap-4 border border-slate-100">
+                        <div class="bg-brand-red text-white w-14 h-14 flex items-center justify-center rounded-xl text-xl font-black">15+</div>
+                        <div>
+                            <p class="text-[10px] text-slate-400 font-black uppercase tracking-widest leading-none mb-1">Años de</p>
+                            <p class="text-lg font-black text-navy tracking-tight">Experiencia</p>
                         </div>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="space-y-2">
-                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-2">Vehículo</label>
-                            <input type="text" id="modelo" required class="input-prolijo" placeholder="Ej: VW Vento">
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <h2 class="text-brand-red font-black uppercase tracking-widest text-xs mb-4">Confianza Total</h2>
+                    <h3 class="text-4xl font-black text-navy mb-8 leading-tight tracking-tight uppercase italic">No solo arreglamos autos, cuidamos tu seguridad.</h3>
+                    <div class="space-y-10">
+                        <div class="flex gap-6">
+                            <div class="flex-shrink-0 w-12 h-12 bg-white rounded-xl shadow-md flex items-center justify-center text-brand-red">
+                                <i data-lucide="check-square" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-black text-navy mb-2 tracking-tight uppercase italic">Presupuestos Claros</h4>
+                                <p class="text-slate-500 font-medium">Te explicamos exactamente el problema antes de cualquier reparación.</p>
+                            </div>
                         </div>
-                        <div class="space-y-2">
-                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-2">Año</label>
-                            <input type="number" id="anio" required class="input-prolijo" placeholder="Ej: 2018">
+                        <div class="flex gap-6">
+                            <div class="flex-shrink-0 w-12 h-12 bg-white rounded-xl shadow-md flex items-center justify-center text-brand-red">
+                                <i data-lucide="clock" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-black text-navy mb-2 tracking-tight uppercase italic">Entrega Puntual</h4>
+                                <p class="text-slate-500 font-medium">Cumplimos estrictamente con los plazos de entrega acordados.</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="space-y-2">
-                        <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-2">Tu Mensaje</label>
-                        <!-- CORREGIDO: Textarea ahora ocupa todo el ancho y tiene el estilo correcto -->
-                        <textarea id="consulta" rows="4" required class="input-prolijo resize-none w-full" placeholder="Contanos qué necesita tu vehículo..."></textarea>
-                    </div>
-                    <button type="submit" class="w-full bg-[#25D366] hover:bg-[#128C7E] text-white font-black py-5 rounded-2xl shadow-xl shadow-green-500/20 flex justify-center items-center gap-3 transition-all active:scale-95 text-lg">
-                        Enviar Consulta vía WhatsApp
-                    </button>
-                </form>
+                </div>
             </div>
         </div>
+    </section>
+
+    <!-- Ubicacion & Contacto -->
+    <section id="ubicacion" class="py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-navy rounded-[3rem] overflow-hidden shadow-2xl flex flex-col lg:flex-row border-4 border-navy">
+                <div class="lg:w-5/12 p-10 lg:p-16 text-white flex flex-col justify-between relative overflow-hidden">
+                    <div class="relative z-10">
+                        <h3 class="text-4xl font-black mb-4 italic tracking-tight uppercase">Visítanos</h3>
+                        <p class="text-slate-400 font-medium mb-12">Estamos sobre el anillo de circunvalación en la zona sur, listos para atenderte.</p>
+                        
+                        <div class="space-y-10">
+                            <div class="flex items-start gap-5">
+                                <i data-lucide="map-pin" class="w-7 h-7 text-brand-red mt-1"></i>
+                                <div>
+                                    <h5 class="font-black text-lg mb-1 tracking-tight uppercase italic">Dirección</h5>
+                                    <p class="text-slate-300 font-medium">Cabo Alfredo Gonzalez 1547<br/>Córdoba, Argentina</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-5">
+                                <i data-lucide="clock" class="w-7 h-7 text-brand-red mt-1"></i>
+                                <div>
+                                    <h5 class="font-black text-lg mb-1 tracking-tight uppercase italic">Atención</h5>
+                                    <p class="text-slate-300 font-medium text-sm">Lunes a Viernes: 08:00 a 18:00<br/>Sábados: Consultar turno</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-brand-red/10 rounded-full blur-3xl"></div>
+                </div>
+                
+                <div id="contacto" class="lg:w-7/12 bg-slate-50 p-10 lg:p-16">
+                    <h3 class="text-3xl font-black text-navy mb-8 tracking-tight uppercase italic">Solicitar Presupuesto</h3>
+                    <form id="whatsappForm" class="space-y-5">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <input type="text" id="nombre" placeholder="Nombre completo" class="input-prolijo" required>
+                            <input type="tel" id="telefono" placeholder="Teléfono" class="input-prolijo" required>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <input type="text" id="modelo" placeholder="Vehículo" class="input-prolijo" required>
+                            <input type="number" id="anio" placeholder="Año" class="input-prolijo" required>
+                        </div>
+                        <textarea id="consulta" rows="4" placeholder="¿Qué necesita tu vehículo?" class="input-prolijo resize-none" required></textarea>
+                        <button type="submit" class="w-full bg-[#25D366] hover:bg-[#128C7E] text-white font-black py-4 rounded-xl shadow-xl shadow-green-500/20 flex justify-center items-center gap-3 transition-all active:scale-95 text-lg uppercase italic">
+                            <i data-lucide="send" class="w-5 h-5"></i>
+                            Enviar vía WhatsApp
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="h-[400px] w-full bg-slate-200">
+        <iframe src="https://www.google.com/maps?q=Cabo+Alfredo+Alejandro+Gonzalez+1547,+Cordoba,+Argentina&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-white py-16 border-t border-slate-100">
+    <footer class="bg-navy-dark text-slate-500 py-16">
         <div class="max-w-7xl mx-auto px-4 text-center">
-            <div class="flex items-center justify-center gap-3 text-navy mb-6">
-                <img src="logo.webp" alt="Logo" class="h-10 w-auto" onerror="this.src='https://via.placeholder.com/40x40?text=ST'">
+            <div class="flex items-center justify-center gap-3 text-white mb-8">
+                <img src="logo.webp" alt="Logo" class="h-10 w-auto">
                 <span class="text-2xl font-black italic tracking-tighter uppercase">Taller ST</span>
             </div>
-            <p class="text-slate-400 text-sm font-medium">&copy; <span id="currentYear"></span> Taller Mecánico ST. Córdoba, Argentina.</p>
+            <p class="mb-10 max-w-md mx-auto font-medium text-sm">Excelencia en servicios mecánicos y diagnósticos de alta complejidad en Córdoba.</p>
+            <div class="pt-8 border-t border-white/5 text-[10px] font-bold uppercase tracking-[0.2em]">
+                &copy; <span id="currentYear"></span> Taller Mecánico ST. Todos los derechos reservados.
+            </div>
         </div>
     </footer>
 
     <!-- BOTONES FLOTANTES -->
-    <div class="fixed bottom-8 right-8 flex flex-col gap-5 z-[60]">
-        <!-- Botón Presupuesto (Pesos) -->
-        <button onclick="abrirModalPassword()" class="bg-navy text-white p-4 rounded-3xl shadow-2xl hover:bg-slate-800 transition-all hover:-translate-y-1 group relative">
-            <svg class="w-9 h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 1.343-3 3s1.343 3 3 3 3 1.343 3 3-1.343 3-3 3m0-18c-1.105 0-2 .895-2 2s.895 2 2 2 2-.895 2-2-.895-2-2-2zm0 0V6a2 2 0 012-2h2m-4 0H8a2 2 0 00-2 2v2M6 20h12a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z"></path>
-            </svg>
-            <span class="absolute right-20 top-1/2 -translate-y-1/2 bg-navy text-white text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl">
-                Generar Presupuesto Interno
+    <!-- Botón Facturación (PEQUEÑO IZQUIERDA) -->
+    <div class="fixed bottom-6 left-6 z-[60]">
+        <button onclick="abrirModalPassword()" class="bg-navy/90 backdrop-blur-md text-white p-3 rounded-xl shadow-2xl hover:bg-navy transition-all hover:-translate-y-1 group border border-white/10 active:scale-90">
+            <i data-lucide="file-text" class="w-5 h-5"></i>
+            <span class="absolute left-14 top-1/2 -translate-y-1/2 bg-navy text-white text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl">
+                Sistema Interno
             </span>
         </button>
+    </div>
 
-        <!-- Botón WhatsApp -->
-        <a href="https://wa.me/5493516337136" target="_blank" class="bg-[#25D366] text-white p-5 rounded-3xl shadow-2xl hover:bg-[#128C7E] transition-all hover:-translate-y-1 group relative animate-bounce hover:animate-none">
-            <svg class="w-9 h-9 fill-current" viewBox="0 0 24 24"><path d="M12.031 0C5.385 0 0 5.386 0 12.031c0 2.126.549 4.192 1.593 6.015L.175 23.504l5.6-1.472a12.016 12.016 0 006.256 1.745c6.645 0 12.03-5.385 12.03-12.03S18.676 0 12.031 0zm0 21.782c-1.801 0-3.565-.483-5.111-1.4l-.367-.217-3.793.997 1.018-3.7-.238-.38a9.982 9.982 0 01-1.539-5.347c0-5.522 4.494-10.017 10.03-10.017 5.524 0 10.016 4.495 10.016 10.017 0 5.523-4.492 10.017-10.016 10.017zm5.496-7.513c-.301-.151-1.782-.88-2.059-.98-.277-.1-.478-.151-.68.151-.202.302-.78 1.002-.955 1.203-.176.202-.352.227-.653.076-1.921-.945-3.08-2.013-4.264-3.834-.126-.196-.013-.306.138-.455.136-.135.302-.353.453-.53.151-.176.202-.302.302-.503.1-.202.05-.378-.025-.53-.076-.151-.68-1.637-.93-2.242-.244-.593-.49-.512-.68-.521-.175-.01-.378-.01-.58-.01-.202 0-.528.076-.805.378-.277.302-1.055 1.03-1.055 2.515 0 1.485 1.08 2.92 1.231 3.12.151.202 2.13 3.251 5.161 4.56.721.311 1.284.497 1.724.637.724.229 1.383.197 1.9.119.58-.088 1.782-.729 2.034-1.433.252-.704.252-1.308.176-1.434-.076-.126-.277-.202-.578-.352z"></path></svg>
+    <!-- WhatsApp (DERECHA) -->
+    <div class="fixed bottom-6 right-6 z-[60]">
+        <a href="https://wa.me/5493516337136" target="_blank" class="bg-[#25D366] text-white p-4 rounded-2xl shadow-2xl hover:bg-[#128C7E] transition-all hover:-translate-y-1 block animate-bounce hover:animate-none border-4 border-white/20">
+            <i data-lucide="message-circle" class="w-7 h-7"></i>
         </a>
     </div>
 
     <!-- MODAL PASSWORD -->
-    <div id="modalPassword" class="fixed inset-0 bg-navy/90 backdrop-blur-xl z-[100] hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-[3rem] p-10 max-w-sm w-full shadow-2xl text-center border border-slate-200 animate-slideUp">
-            <div class="w-24 h-24 bg-slate-50 rounded-[2rem] flex items-center justify-center mx-auto mb-8 text-4xl border border-slate-300">🔐</div>
-            <h3 class="text-2xl font-black text-navy mb-3 tracking-tight">Acceso Privado</h3>
-            <p class="text-slate-400 text-sm mb-10 font-medium px-4">Ingresá la clave de facturación para crear un nuevo presupuesto.</p>
-            <input type="password" id="inputPass" class="input-prolijo mb-8 text-center text-2xl font-black tracking-widest" placeholder="••••">
+    <div id="modalPassword" class="fixed inset-0 bg-navy/95 backdrop-blur-xl z-[100] hidden flex items-center justify-center p-6">
+        <div class="bg-white rounded-3xl p-10 max-w-sm w-full shadow-2xl text-center animate-slideUp border-4 border-slate-50">
+            <div class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center mx-auto mb-8 text-brand-red border border-slate-100">
+                <i data-lucide="lock" class="w-8 h-8"></i>
+            </div>
+            <h3 class="text-xl font-black text-navy mb-2 tracking-tight uppercase italic">Acceso Privado</h3>
+            <p class="text-slate-400 text-[10px] mb-8 font-bold uppercase tracking-widest px-4">Clave del generador de facturas.</p>
+            <input type="password" id="inputPass" class="input-prolijo mb-8 text-center text-2xl font-black tracking-[0.4em] border-2 border-slate-100" placeholder="••••">
             <div class="flex flex-col gap-4">
-                <button onclick="verificarPassword()" class="w-full py-5 bg-red-600 text-white rounded-2xl font-black shadow-xl shadow-red-600/30 hover:bg-red-700 transition-all">Ingresar</button>
-                <button onclick="cerrarModal('modalPassword')" class="w-full py-2 text-slate-400 font-bold text-sm">Cerrar</button>
+                <button onclick="verificarPassword()" class="w-full py-4 bg-brand-red text-white rounded-xl font-black shadow-xl shadow-brand-red/30 hover:bg-brand-redHover transition-all uppercase italic tracking-widest">Ingresar</button>
+                <button onclick="cerrarModal('modalPassword')" class="w-full py-2 text-slate-400 font-bold uppercase text-[9px] tracking-widest">Cerrar</button>
             </div>
         </div>
     </div>
 
-    <!-- MODAL GENERADOR PRESUPUESTO (REFORMADO) -->
+    <!-- MODAL GENERADOR PRESUPUESTO -->
     <div id="modalPresupuesto" class="fixed inset-0 bg-slate-100 z-[101] hidden overflow-y-auto no-scrollbar">
-        <div class="min-h-screen py-10 px-4 md:px-10 flex flex-col items-center">
-            <div class="max-w-4xl w-full bg-white rounded-[3.5rem] shadow-2xl overflow-hidden mb-20 border border-slate-300 animate-slideUp">
-                <!-- Header del Form -->
-                <div class="bg-navy p-10 md:p-14 text-white flex flex-col md:flex-row justify-between items-center gap-8 relative overflow-hidden">
-                    <div class="flex items-center gap-6 relative z-10">
-                        <img src="logo.webp" alt="Logo" class="h-14 w-auto bg-white p-1 rounded-xl shadow-lg" onerror="this.src='https://via.placeholder.com/60x60?text=ST'">
+        <div class="min-h-screen py-8 px-4 flex flex-col items-center">
+            <div class="max-w-4xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden mb-12 border border-slate-200 animate-slideUp">
+                <!-- Header -->
+                <div class="bg-navy p-8 text-white flex flex-col md:flex-row justify-between items-center gap-6 relative border-b-4 border-brand-red">
+                    <div class="flex items-center gap-6">
+                        <img src="logo.webp" alt="Logo" class="h-12 w-auto bg-white p-1.5 rounded-xl">
                         <div>
-                            <h2 class="text-3xl font-black italic tracking-tighter leading-none">Taller ST</h2>
-                            <p class="text-slate-400 text-[10px] mt-2 uppercase tracking-[0.3em] font-black">Editor de Presupuestos</p>
+                            <h2 class="text-2xl font-black italic tracking-tighter leading-none uppercase">Taller ST</h2>
+                            <p class="text-slate-400 text-[9px] mt-2 uppercase tracking-[0.3em] font-black">Sistema de Facturación</p>
                         </div>
                     </div>
-                    <button onclick="cerrarModal('modalPresupuesto')" class="bg-red-600 hover:bg-red-700 px-8 py-3 rounded-2xl text-xs font-black uppercase tracking-widest transition-all relative z-10">
-                        Salir del Editor
+                    <button onclick="cerrarModal('modalPresupuesto')" class="bg-white/10 hover:bg-white/20 px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest border border-white/20 transition-colors">
+                        Finalizar Sesión
                     </button>
                 </div>
 
-                <!-- Formulario -->
-                <form id="formPresupuesto" class="p-10 md:p-16 space-y-16">
-                    <!-- Sección 1: Cliente -->
-                    <div class="space-y-10">
+                <!-- Form -->
+                <form id="formPresupuesto" class="p-8 md:p-12 space-y-12">
+                    <div class="space-y-8">
                         <div class="flex items-center gap-4">
-                            <span class="w-12 h-12 bg-navy text-white rounded-2xl flex items-center justify-center font-black border-b-4 border-red-600 shadow-lg">01</span>
-                            <h3 class="font-black text-navy text-2xl tracking-tight">Datos del Receptor</h3>
+                            <span class="w-10 h-10 bg-navy text-white rounded-xl flex items-center justify-center font-black border-b-2 border-brand-red shadow-lg text-sm">01</span>
+                            <h3 class="font-black text-navy text-xl tracking-tight italic uppercase">Recepción</h3>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            <div class="md:col-span-2">
-                                <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-3 block ml-2">Nombre del Cliente</label>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="md:col-span-2 space-y-2">
+                                <label class="text-[9px] font-black text-slate-500 uppercase tracking-widest ml-2">Titular</label>
                                 <input type="text" id="p_cliente" placeholder="Nombre completo" class="input-prolijo" required>
                             </div>
-                            <div>
-                                <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-3 block ml-2">Fecha</label>
+                            <div class="space-y-2">
+                                <label class="text-[9px] font-black text-slate-500 uppercase tracking-widest ml-2">Fecha</label>
                                 <input type="date" id="p_fecha" class="input-prolijo font-bold">
                             </div>
-                            <div class="md:col-span-2">
-                                <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-3 block ml-2">Vehículo / Modelo</label>
-                                <input type="text" id="p_vehiculo" placeholder="Ej: Amarok V6" class="input-prolijo" required>
+                            <div class="md:col-span-2 space-y-2">
+                                <label class="text-[9px] font-black text-slate-500 uppercase tracking-widest ml-2">Vehículo</label>
+                                <input type="text" id="p_vehiculo" placeholder="Ej: VW Amarok V6" class="input-prolijo" required>
                             </div>
-                            <div>
-                                <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-3 block ml-2">Patente</label>
-                                <input type="text" id="p_patente" placeholder="AF 555 ST" class="input-prolijo uppercase">
+                            <div class="space-y-2">
+                                <label class="text-[9px] font-black text-slate-500 uppercase tracking-widest ml-2">Dominio</label>
+                                <input type="text" id="p_patente" placeholder="Ej: AF 555 ST" class="input-prolijo uppercase">
                             </div>
                         </div>
                     </div>
 
-                    <!-- Sección 2: Detalle (Simplificado) -->
-                    <div class="space-y-10">
+                    <div class="space-y-8">
                         <div class="flex items-center gap-4">
-                            <span class="w-12 h-12 bg-navy text-white rounded-2xl flex items-center justify-center font-black border-b-4 border-red-600 shadow-lg">02</span>
-                            <h3 class="font-black text-navy text-2xl tracking-tight">Lista de Conceptos</h3>
+                            <span class="w-10 h-10 bg-navy text-white rounded-xl flex items-center justify-center font-black border-b-2 border-brand-red shadow-lg text-sm">02</span>
+                            <h3 class="font-black text-navy text-xl tracking-tight italic uppercase">Servicios</h3>
                         </div>
                         <div class="space-y-4" id="itemsContainer">
-                            <div class="hidden md:flex gap-8 px-6 text-[10px] font-black text-slate-400 uppercase tracking-widest">
-                                <div class="flex-1">Descripción del trabajo</div>
-                                <div class="w-48 text-right pr-12">Importe ($)</div>
-                                <div class="w-10"></div>
+                            <div class="hidden md:flex gap-6 px-4 text-[9px] font-black text-slate-400 uppercase tracking-widest">
+                                <div class="flex-1">Trabajo Realizado / Concepto</div>
+                                <div class="w-40 text-right pr-10">Precio ($)</div>
+                                <div class="w-8"></div>
                             </div>
                             <!-- Primer item -->
-                            <div class="flex flex-col md:flex-row gap-4 md:gap-8 p-6 bg-slate-50 rounded-3xl item-row border-2 border-slate-200 transition-all hover:border-red-600/20 animate-slideUp">
-                                <input type="text" placeholder="Ej: Cambio de Aceite y Filtro" class="flex-1 input-prolijo" required>
+                            <div class="flex flex-col md:flex-row gap-4 p-6 bg-slate-50 rounded-2xl item-row border border-slate-200 transition-all hover:bg-white hover:border-brand-red/30 animate-slideUp">
+                                <input type="text" placeholder="Ej: Cambio de Kit de Distribución" class="flex-1 input-prolijo" required>
                                 <div class="flex items-center gap-4">
                                     <span class="md:hidden text-xs font-black text-slate-400">$</span>
-                                    <input type="number" placeholder="0.00" class="w-full md:w-48 input-prolijo precio-item text-right font-black text-red-600" oninput="calcularTotal()">
+                                    <input type="number" placeholder="0.00" class="w-full md:w-40 input-prolijo precio-item text-right font-black text-brand-red" oninput="calcularTotal()">
                                 </div>
-                                <div class="w-10 flex items-center justify-center"></div>
+                                <div class="w-8"></div>
                             </div>
                         </div>
-                        <button type="button" onclick="agregarItem()" class="mt-6 flex items-center gap-4 text-red-600 font-black bg-red-50 px-8 py-5 rounded-2xl border-2 border-red-100 transition-all hover:bg-red-100">
-                            + Añadir otro ítem
+                        <button type="button" onclick="agregarItem()" class="mt-4 flex items-center gap-3 text-brand-red font-black bg-slate-50 px-6 py-4 rounded-xl border border-slate-200 hover:bg-white transition-all uppercase tracking-widest text-[9px]">
+                            <i data-lucide="plus" class="w-4 h-4"></i>
+                            Cargar concepto
                         </button>
                     </div>
 
-                    <!-- Sección 3: Totales -->
-                    <div class="bg-navy p-10 md:p-14 rounded-[3rem] text-white flex flex-col md:flex-row justify-between items-center gap-10 shadow-2xl relative overflow-hidden">
-                        <div class="flex-1 w-full relative z-10">
-                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3 block ml-1">Observaciones / Garantía</label>
-                            <input type="text" id="p_obs" placeholder="Ej: Garantía 6 meses." class="w-full bg-navy-light border-2 border-white/20 rounded-2xl px-6 py-5 outline-none focus:border-red-600 font-medium text-slate-300">
+                    <div class="bg-navy p-10 rounded-[2.5rem] text-white flex flex-col md:flex-row justify-between items-center gap-8 shadow-2xl relative border-b-4 border-brand-red">
+                        <div class="flex-1 w-full space-y-3">
+                            <label class="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1 block ml-2">Garantía / Observaciones</label>
+                            <input type="text" id="p_obs" placeholder="Ej: Garantía 6 meses o 10.000km." class="w-full bg-navy-light border-2 border-white/10 rounded-xl px-5 py-3.5 outline-none focus:border-brand-red font-medium text-slate-300 text-sm">
                         </div>
-                        <div class="text-center md:text-right min-w-[280px] relative z-10">
-                            <p class="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-3 pr-2">Total Final</p>
-                            <div class="text-6xl font-black text-red-600 flex items-center justify-center md:justify-end gap-3 tracking-tighter leading-none">
-                                <span class="text-2xl font-bold mt-2">$</span>
-                                <input type="number" id="p_total" value="0" readonly class="bg-transparent border-none outline-none w-56 text-right pointer-events-none">
+                        <div class="text-center md:text-right min-w-[250px]">
+                            <p class="text-slate-400 text-[9px] font-black uppercase tracking-widest mb-2">Monto Final</p>
+                            <div class="text-5xl font-black text-brand-red flex items-center justify-center md:justify-end gap-3 tracking-tighter leading-none">
+                                <span class="text-xl font-bold mt-2">$</span>
+                                <input type="number" id="p_total" value="0" readonly class="bg-transparent border-none outline-none w-48 text-right pointer-events-none">
                             </div>
                         </div>
                     </div>
 
-                    <div class="pt-10">
-                        <button type="button" onclick="generarPDF()" class="w-full bg-red-600 hover:bg-red-700 text-white font-black py-7 rounded-[2rem] shadow-2xl shadow-red-600/40 flex items-center justify-center gap-5 transition-all active:scale-95 text-xl tracking-tight">
-                            GENERAR PDF MEMBRETADO
+                    <div class="pt-8">
+                        <button type="button" onclick="generarPDF()" class="w-full bg-brand-red hover:bg-brand-redHover text-white font-black py-6 rounded-2xl shadow-xl shadow-brand-red/40 flex items-center justify-center gap-4 transition-all active:scale-95 text-xl tracking-tight uppercase italic">
+                            <i data-lucide="printer" class="w-6 h-6"></i>
+                            Generar PDF
                         </button>
                     </div>
                 </form>
@@ -371,25 +430,33 @@
         </div>
     </div>
 
-    <!-- SCRIPTS -->
+    <!-- Scripts -->
     <script>
+        // Init Icons
+        lucide.createIcons();
         document.getElementById('currentYear').textContent = new Date().getFullYear();
         document.getElementById('p_fecha').valueAsDate = new Date();
 
-        const nav = document.getElementById('navbar');
+        // Mobile Menu
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+        // Nav Scroll Effect
+        const nav = document.querySelector('nav');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) nav.classList.add('shadow-lg', 'py-2');
-            else nav.classList.remove('shadow-lg', 'py-2');
+            if (window.scrollY > 100) nav.classList.add('py-2', 'shadow-2xl');
+            else nav.classList.remove('py-2', 'shadow-2xl');
         });
 
-        // Modal Password
+        // Billing Logic
         function abrirModalPassword() {
             document.getElementById('modalPassword').classList.remove('hidden');
             document.getElementById('inputPass').focus();
         }
-        function cerrarModal(id) {
-            document.getElementById(id).classList.add('hidden');
-        }
+        function cerrarModal(id) { document.getElementById(id).classList.add('hidden'); }
+        
         function verificarPassword() {
             if (document.getElementById('inputPass').value.toLowerCase() === 'presupuesto') {
                 cerrarModal('modalPassword');
@@ -397,27 +464,27 @@
                 document.getElementById('inputPass').value = '';
             } else {
                 const inp = document.getElementById('inputPass');
-                inp.classList.add('border-red-600', 'bg-red-50');
-                setTimeout(() => inp.classList.remove('border-red-600', 'bg-red-50'), 500);
+                inp.classList.add('border-brand-red', 'bg-red-50');
+                setTimeout(() => inp.classList.remove('border-brand-red', 'bg-red-50'), 500);
             }
         }
 
-        // Lógica de Ítems
         function agregarItem() {
             const container = document.getElementById('itemsContainer');
             const div = document.createElement('div');
-            div.className = 'flex flex-col md:flex-row gap-4 md:gap-8 p-6 bg-slate-50 rounded-3xl item-row border-2 border-slate-200 transition-all hover:border-red-600/20 animate-slideUp';
+            div.className = 'flex flex-col md:flex-row gap-4 p-6 bg-slate-50 rounded-2xl item-row border border-slate-200 animate-slideUp';
             div.innerHTML = `
-                <input type="text" placeholder="Nueva tarea..." class="flex-1 input-prolijo">
+                <input type="text" placeholder="Tarea realizada..." class="flex-1 input-prolijo">
                 <div class="flex items-center gap-4">
                     <span class="md:hidden text-xs font-black text-slate-400">$</span>
-                    <input type="number" placeholder="0.00" class="w-full md:w-48 input-prolijo precio-item text-right font-black text-red-600" oninput="calcularTotal()">
+                    <input type="number" placeholder="0.00" class="w-full md:w-40 input-prolijo precio-item text-right font-black text-brand-red" oninput="calcularTotal()">
                 </div>
-                <button type="button" onclick="this.parentElement.remove(); calcularTotal();" class="text-slate-300 hover:text-red-600 p-3 rounded-2xl transition-all">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                <button type="button" onclick="this.parentElement.remove(); calcularTotal();" class="text-slate-300 hover:text-brand-red p-3 rounded-xl transition-all">
+                    <i data-lucide="trash-2" class="w-5 h-5"></i>
                 </button>
             `;
             container.appendChild(div);
+            lucide.createIcons();
         }
 
         function calcularTotal() {
@@ -427,7 +494,14 @@
             document.getElementById('p_total').value = total;
         }
 
-        // --- PDF GENERATOR (MEMBRETADO BLANCO) ---
+        // WhatsApp Form
+        document.getElementById('whatsappForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const msg = `¡Hola Taller ST! 👋\n\nMi nombre es *${document.getElementById('nombre').value}*.\n🚘 *Vehículo:* ${document.getElementById('modelo').value} (${document.getElementById('anio').value})\n📞 *Tel:* ${document.getElementById('telefono').value}\n\n*Consulta:*\n${document.getElementById('consulta').value}`;
+            window.open(`https://wa.me/5493516337136?text=${encodeURIComponent(msg)}`, '_blank');
+        });
+
+        // PDF Generation
         function getBase64Image(img) {
             const canvas = document.createElement("canvas");
             canvas.width = img.naturalWidth;
@@ -444,20 +518,20 @@
             const red = [220, 38, 38];
             const cliente = document.getElementById('p_cliente').value || "CLIENTE";
 
-            // Encabezado Blanco (Estilo Hoja Membretada)
+            // Header
+            doc.setFillColor(...red);
+            doc.rect(0, 0, 210, 2, 'F'); 
             doc.setFillColor(255, 255, 255);
-            doc.rect(0, 0, 210, 60, 'F');
+            doc.rect(0, 2, 210, 58, 'F');
             
-            // Logo
             try {
                 const img = document.getElementById('main-logo');
                 if (img && img.complete) {
                     const data = getBase64Image(img);
-                    doc.addImage(data, 'PNG', 15, 10, 38, 38);
+                    doc.addImage(data, 'PNG', 15, 12, 35, 35);
                 }
             } catch(e) {}
 
-            // Texto Encabezado en Navy (sobre fondo blanco)
             doc.setTextColor(...navy);
             doc.setFontSize(26);
             doc.setFont("helvetica", "bold");
@@ -468,99 +542,77 @@
             doc.setTextColor(100, 116, 139);
             doc.text("Cabo Alfredo Gonzalez 1547, Córdoba", 200, 33, { align: "right" });
             doc.text("WhatsApp: +54 9 351 633-7136", 200, 38, { align: "right" });
-            
-            doc.setDrawColor(220, 220, 220);
-            doc.line(15, 55, 195, 55);
+            doc.line(15, 52, 195, 52);
 
-            // Información del Cliente
+            // Bloque Receptor
             doc.setFillColor(248, 250, 252);
-            doc.roundedRect(15, 65, 180, 35, 3, 3, 'F');
+            doc.roundedRect(15, 62, 180, 35, 3, 3, 'F');
             doc.setTextColor(100, 116, 139);
             doc.setFontSize(8);
-            doc.text("DESTINATARIO / CLIENTE", 22, 75);
-            doc.text("VEHÍCULO / MOTOR", 22, 88);
-            doc.text("PATENTE", 160, 88);
+            doc.text("CLIENTE / TITULAR", 22, 72);
+            doc.text("VEHÍCULO", 22, 85);
+            doc.text("DOMINIO", 160, 85);
             
             doc.setTextColor(...navy);
             doc.setFontSize(12);
             doc.setFont("helvetica", "bold");
-            doc.text(cliente.toUpperCase(), 22, 81);
-            doc.text(document.getElementById('p_vehiculo').value.toUpperCase(), 22, 94);
-            doc.text(document.getElementById('p_patente').value.toUpperCase(), 160, 94);
+            doc.text(cliente.toUpperCase(), 22, 78);
+            doc.text(document.getElementById('p_vehiculo').value.toUpperCase(), 22, 91);
+            doc.text(document.getElementById('p_patente').value.toUpperCase(), 160, 91);
 
             // Tabla
-            let y = 110;
-            doc.setFillColor(...navy); // Cabecera Navy
+            let y = 108;
+            doc.setFillColor(...navy); 
             doc.rect(15, y, 180, 12, 'F');
             doc.setTextColor(255, 255, 255);
             doc.setFontSize(9);
-            doc.text("DETALLE DE SERVICIOS Y TRABAJOS", 20, y + 7.5);
-            doc.text("IMPORTE ($)", 170, y + 7.5);
+            doc.text("DETALLE DE TRABAJO REALIZADO", 20, y + 7.5);
+            doc.text("PRECIO ($)", 170, y + 7.5);
 
             y += 20;
             doc.setTextColor(50, 50, 50);
-            doc.setFontSize(10);
-            doc.setFont("helvetica", "normal");
-
             const items = document.querySelectorAll('.item-row');
             items.forEach(row => {
                 const descInput = row.querySelector('input:first-child');
                 const priceInput = row.querySelector('.precio-item');
                 if(descInput && descInput.value) {
+                    doc.setFont("helvetica", "normal");
                     doc.text(descInput.value, 20, y);
                     doc.setFont("helvetica", "bold");
                     doc.text(`$ ${Number(priceInput.value || 0).toLocaleString()}`, 175, y, { align: "right" });
-                    doc.setFont("helvetica", "normal");
-                    doc.setDrawColor(245, 245, 245);
                     doc.line(15, y + 4, 195, y + 4);
                     y += 12;
+                    if (y > 270) { doc.addPage(); y = 20; }
                 }
             });
 
-            // Total Final
+            // Resumen Final
             y += 10;
             doc.setDrawColor(...red);
-            doc.setLineWidth(1);
             doc.line(130, y, 195, y);
             doc.setFontSize(22);
-            doc.setFont("helvetica", "bold");
             doc.setTextColor(...red);
             doc.text(`TOTAL: $ ${Number(document.getElementById('p_total').value).toLocaleString()}`, 195, y + 15, { align: "right" });
 
-            // Garantía
-            const obs = document.getElementById('p_obs').value;
-            if(obs) {
-                y += 35;
-                doc.setFontSize(9);
-                doc.setTextColor(100, 116, 139);
-                doc.setFont("helvetica", "bold");
-                doc.text("OBSERVACIONES / GARANTÍA:", 15, y);
-                doc.setFont("helvetica", "normal");
-                doc.text(obs, 15, y + 6);
-            }
-
-            // Pie
+            // --- LEYENDAS PIE DE PÁGINA ---
             doc.setFontSize(8);
-            doc.setTextColor(150, 150, 150);
-            doc.text("Taller ST - Calidad y Confianza.", 105, 285, { align: "center" });
+            doc.setTextColor(148, 163, 184); // Slate 400
+            const footerY = 275;
+            
+            doc.setFont("helvetica", "bold");
+            doc.text("NOTAS IMPORTANTES:", 15, footerY);
+            
+            doc.setFont("helvetica", "normal");
+            doc.text("• Presupuesto válido por 7 días corridos a partir de la fecha.", 15, footerY + 5);
+            doc.text("• Los precios están sujetos a cambios si se detectan fallas adicionales al desarmar el vehículo.", 15, footerY + 10);
+            doc.text("• Repuestos con garantía oficial del fabricante.", 15, footerY + 15);
+            
+            doc.setFont("helvetica", "bolditalic");
+            doc.setTextColor(...navy);
+            doc.text("Gracias por elegir Taller ST - Compromiso con tu seguridad.", 105, footerY + 22, { align: "center" });
 
             doc.save(`Presupuesto_ST_${cliente.replace(/\s/g, '_')}.pdf`);
         }
-
-        // Home Form WhatsApp
-        document.getElementById('whatsappForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const msg = `¡Hola Taller ST! 👋\n\nMi nombre es *${document.getElementById('nombre').value}*.\n🚘 *Vehículo:* ${document.getElementById('modelo').value} (${document.getElementById('anio').value})\n📞 *Tel:* ${document.getElementById('telefono').value}\n\n*Consulta:*\n${document.getElementById('consulta').value}`;
-            window.open(`https://wa.me/5493516337136?text=${encodeURIComponent(msg)}`, '_blank');
-        });
-
-        // Mobile Menu Button
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-        document.querySelectorAll('.mobile-link').forEach(link => {
-            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
-        });
     </script>
 </body>
 </html>
