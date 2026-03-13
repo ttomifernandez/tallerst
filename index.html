@@ -111,11 +111,29 @@
         </div>
 
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-            <div class="max-w-2xl text-white animate-slideUp">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-bold mb-8 text-slate-200 backdrop-blur-md uppercase tracking-widest">
+            <div class="max-w-3xl text-white animate-slideUp">
+                <!-- Status Badge -->
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-[10px] font-bold mb-6 text-slate-200 backdrop-blur-md uppercase tracking-[0.2em]">
                     <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
                     Taller Abierto - Atención Inmediata
                 </div>
+
+                <!-- NEW: Vehicle Type Labels -->
+                <div class="flex flex-wrap gap-3 mb-8">
+                    <div class="flex items-center gap-2 px-4 py-2 rounded-xl bg-navy/40 border border-white/10 backdrop-blur-md text-[10px] font-bold uppercase tracking-widest text-slate-100">
+                        <i data-lucide="truck" class="w-4 h-4 text-brand-red"></i>
+                        Camiones Medianos
+                    </div>
+                    <div class="flex items-center gap-2 px-4 py-2 rounded-xl bg-navy/40 border border-white/10 backdrop-blur-md text-[10px] font-bold uppercase tracking-widest text-slate-100">
+                        <i data-lucide="package" class="w-4 h-4 text-brand-red"></i>
+                        Utilitarios
+                    </div>
+                    <div class="flex items-center gap-2 px-4 py-2 rounded-xl bg-navy/40 border border-white/10 backdrop-blur-md text-[10px] font-bold uppercase tracking-widest text-slate-100">
+                        <i data-lucide="car" class="w-4 h-4 text-brand-red"></i>
+                        Autos
+                    </div>
+                </div>
+
                 <h1 class="text-5xl md:text-7xl font-black tracking-tighter mb-6 leading-[1.1] italic uppercase">
                     Tu vehículo en <br/><span class="text-brand-red">manos expertas.</span>
                 </h1>
@@ -317,7 +335,7 @@
         </a>
     </div>
 
-    <!-- MODAL PASSWORD -->
+    <!-- MODAL PASSWORD (REFINADO) -->
     <div id="modalPassword" class="fixed inset-0 bg-navy/95 backdrop-blur-xl z-[100] hidden flex items-center justify-center p-6">
         <div class="bg-white rounded-3xl p-10 max-w-sm w-full shadow-2xl text-center animate-slideUp border-4 border-slate-50">
             <div class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center mx-auto mb-8 text-brand-red border border-slate-100">
@@ -333,11 +351,11 @@
         </div>
     </div>
 
-    <!-- MODAL GENERADOR PRESUPUESTO -->
+    <!-- MODAL GENERADOR PRESUPUESTO (REFINADO) -->
     <div id="modalPresupuesto" class="fixed inset-0 bg-slate-100 z-[101] hidden overflow-y-auto no-scrollbar">
         <div class="min-h-screen py-8 px-4 flex flex-col items-center">
             <div class="max-w-4xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden mb-12 border border-slate-200 animate-slideUp">
-                <!-- Header -->
+                <!-- Header Refinado -->
                 <div class="bg-navy p-8 text-white flex flex-col md:flex-row justify-between items-center gap-6 relative border-b-4 border-brand-red">
                     <div class="flex items-center gap-6">
                         <img src="logo.webp" alt="Logo" class="h-12 w-auto bg-white p-1.5 rounded-xl">
@@ -351,8 +369,9 @@
                     </button>
                 </div>
 
-                <!-- Form -->
+                <!-- Form Refinado -->
                 <form id="formPresupuesto" class="p-8 md:p-12 space-y-12">
+                    <!-- Sección 1 -->
                     <div class="space-y-8">
                         <div class="flex items-center gap-4">
                             <span class="w-10 h-10 bg-navy text-white rounded-xl flex items-center justify-center font-black border-b-2 border-brand-red shadow-lg text-sm">01</span>
@@ -378,6 +397,7 @@
                         </div>
                     </div>
 
+                    <!-- Sección 2 -->
                     <div class="space-y-8">
                         <div class="flex items-center gap-4">
                             <span class="w-10 h-10 bg-navy text-white rounded-xl flex items-center justify-center font-black border-b-2 border-brand-red shadow-lg text-sm">02</span>
@@ -405,6 +425,7 @@
                         </button>
                     </div>
 
+                    <!-- Sección 3 Refinada -->
                     <div class="bg-navy p-10 rounded-[2.5rem] text-white flex flex-col md:flex-row justify-between items-center gap-8 shadow-2xl relative border-b-4 border-brand-red">
                         <div class="flex-1 w-full space-y-3">
                             <label class="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1 block ml-2">Garantía / Observaciones</label>
