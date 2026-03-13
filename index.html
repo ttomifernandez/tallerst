@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taller Mecánico ST | Expertos en tu vehículo</title>
-    <meta name="description" content="Taller Mecánico ST. Ofrecemos mecánica ligera, tren delantero, frenos, diagnóstico y más. ¡Contactanos hoy!">
+    <meta name="description" content="Taller Mecánico ST. Ofrecemos mecánica ligera, tren delantero, frenos, diagnóstico y más.">
     
     <!-- Metaetiquetas para compartir -->
     <meta property="og:title" content="Taller Mecánico ST | Expertos en tu vehículo">
-    <meta property="og:description" content="Especialistas en mecánica ligera, tren delantero, frenos y diagnóstico. ¡Pedí tu turno por WhatsApp hoy!">
+    <meta property="og:description" content="Especialistas en mecánica ligera, tren delantero, frenos y diagnóstico.">
     <meta property="og:image" content="logo.webp"> 
     <meta property="og:type" content="website">
 
@@ -29,6 +29,10 @@
                             600: '#dc2626',
                             700: '#b91c1c',
                         }
+                    },
+                    borderRadius: {
+                        '3xl': '1.5rem',
+                        '4xl': '2rem',
                     }
                 }
             }
@@ -48,26 +52,34 @@
             background-attachment: fixed;
         }
 
-        /* Estilos para el formulario de presupuesto */
+        /* Estilo de Inputs Prolijo y con Contraste */
         .input-presupuesto {
-            @apply w-full px-4 py-2 rounded-lg border border-slate-300 outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent transition-all;
+            @apply w-full px-5 py-3.5 rounded-2xl border border-slate-300 bg-slate-50/50 text-navy font-medium outline-none transition-all duration-200 shadow-sm placeholder:text-slate-400;
+        }
+        .input-presupuesto:focus {
+            @apply border-red-600 bg-white ring-4 ring-red-600/5 shadow-md;
         }
 
-        /* Ocultar scrollbars */
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-slideUp { animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
     </style>
 </head>
 <body class="text-slate-800 antialiased selection:bg-red-600 selection:text-white">
 
     <!-- Navbar -->
-    <nav class="fixed w-full z-50 bg-white text-navy shadow-sm transition-all duration-300" id="navbar">
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md text-navy shadow-sm transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="#" class="text-2xl font-bold flex items-center gap-2 text-navy">
-                        <img src="logo.webp" alt="Logo Taller ST" class="h-12 w-auto object-contain" onerror="this.src='https://via.placeholder.com/50x50?text=ST'">
-                        <span>Taller<span class="text-red-600">ST</span></span>
+                    <a href="#" class="text-2xl font-bold flex items-center gap-3 text-navy">
+                        <img src="logo.webp" id="main-logo" alt="Logo Taller ST" class="h-11 w-auto object-contain" crossorigin="anonymous" onerror="this.src='https://via.placeholder.com/50x50?text=ST'">
+                        <span class="tracking-tight">Taller<span class="text-red-600">ST</span></span>
                     </a>
                 </div>
                 
@@ -75,26 +87,16 @@
                     <a href="#inicio" class="hover:text-red-600 transition-colors font-medium">Inicio</a>
                     <a href="#servicios" class="hover:text-red-600 transition-colors font-medium">Servicios</a>
                     <a href="#ubicacion" class="hover:text-red-600 transition-colors font-medium">Ubicación</a>
-                    <a href="#contacto" class="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-full font-bold transition-colors shadow-md shadow-red-600/30">Turnos / Consultas</a>
+                    <a href="#contacto" class="bg-red-600 hover:bg-red-700 text-white px-7 py-2.5 rounded-full font-bold transition-all shadow-lg shadow-red-600/20 active:scale-95">Pedir Turno</a>
                 </div>
 
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-navy hover:text-red-600 focus:outline-none p-2">
-                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-navy p-2 rounded-xl hover:bg-slate-100 transition-colors">
+                        <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                         </svg>
                     </button>
                 </div>
-            </div>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 shadow-xl">
-            <div class="px-4 pt-2 pb-6 space-y-2">
-                <a href="#inicio" class="block px-3 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-red-600 rounded-md transition-colors mobile-link">Inicio</a>
-                <a href="#servicios" class="block px-3 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-red-600 rounded-md transition-colors mobile-link">Servicios</a>
-                <a href="#ubicacion" class="block px-3 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-red-600 rounded-md transition-colors mobile-link">Ubicación</a>
-                <a href="#contacto" class="block px-3 py-3 mt-4 text-center text-base font-bold text-white bg-red-600 hover:bg-red-700 rounded-md transition-colors mobile-link">Pedir Turno</a>
             </div>
         </div>
     </nav>
@@ -103,25 +105,19 @@
     <section id="inicio" class="hero-bg min-h-[90vh] flex items-center pt-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div class="max-w-2xl">
-                <span class="inline-block py-1 px-3 rounded-full bg-red-600/20 text-red-500 font-semibold text-sm mb-4 border border-red-600/30 backdrop-blur-sm">Atención de primera línea</span>
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
-                    Soluciones reales para tu <span class="text-red-600">vehículo</span>.
+                <span class="inline-block py-1.5 px-4 rounded-full bg-red-600/20 text-red-500 font-bold text-xs uppercase tracking-widest mb-6 border border-red-600/30 backdrop-blur-md">Calidad Garantizada</span>
+                <h1 class="text-5xl md:text-7xl font-black text-white leading-[1.1] mb-8 tracking-tighter">
+                    Cuidamos tu <span class="text-red-600">pasión</span> sobre ruedas.
                 </h1>
-                <p class="text-lg md:text-xl text-slate-300 mb-6 max-w-lg leading-relaxed">
-                    Confianza, tecnología y experiencia a tu servicio. Nos ocupamos de que vuelvas a la ruta de forma rápida y segura.
+                <p class="text-xl text-slate-300 mb-10 max-w-lg leading-relaxed font-medium">
+                    Experiencia técnica y herramientas de precisión para que tu vehículo esté siempre en perfectas condiciones.
                 </p>
                 
-                <div class="flex flex-wrap gap-3 mb-10">
-                    <span class="px-4 py-2 bg-white/10 text-white rounded-lg text-sm font-semibold border border-white/20 backdrop-blur-md">🚗 Autos</span>
-                    <span class="px-4 py-2 bg-white/10 text-white rounded-lg text-sm font-semibold border border-white/20 backdrop-blur-md">🛻 Camionetas</span>
-                    <span class="px-4 py-2 bg-white/10 text-white rounded-lg text-sm font-semibold border border-white/20 backdrop-blur-md">🚐 Utilitarios</span>
-                </div>
-
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#contacto" class="text-center bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all shadow-lg shadow-red-600/40 hover:-translate-y-1">
-                        Pedir Presupuesto
+                <div class="flex flex-col sm:flex-row gap-5">
+                    <a href="#contacto" class="text-center bg-red-600 hover:bg-red-700 text-white px-10 py-5 rounded-2xl font-bold text-lg transition-all shadow-xl shadow-red-600/40 hover:-translate-y-1 active:scale-95">
+                        Agendar Turno
                     </a>
-                    <a href="#servicios" class="text-center bg-transparent border-2 border-white hover:bg-white hover:text-navy text-white px-8 py-4 rounded-lg font-bold text-lg transition-all hover:-translate-y-1">
+                    <a href="#servicios" class="text-center bg-white/5 border border-white/20 hover:bg-white/10 backdrop-blur-sm text-white px-10 py-5 rounded-2xl font-bold text-lg transition-all hover:-translate-y-1 active:scale-95">
                         Ver Servicios
                     </a>
                 </div>
@@ -129,54 +125,57 @@
         </div>
     </section>
 
-    <!-- Servicios Section -->
-    <section id="servicios" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-navy mb-4">Nuestros Servicios</h2>
-                <div class="w-20 h-1 bg-red-600 mx-auto rounded-full"></div>
-            </div>
+    <!-- Sección de Servicios Simplificada -->
+    <section id="servicios" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-black text-navy mb-4 tracking-tight">Nuestra Especialidad</h2>
+            <div class="w-16 h-1.5 bg-red-600 mx-auto rounded-full mb-16"></div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-xl transition-all group">
-                    <div class="w-14 h-14 bg-navy text-white rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-red-600 transition-colors">🛢️</div>
-                    <h3 class="text-xl font-bold text-navy mb-3">Mecánica Ligera</h3>
-                    <p class="text-slate-600">Mantenimiento preventivo, cambio de aceite y filtros, revisión de fluidos.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="group p-10 rounded-[2.5rem] bg-slate-50 border border-slate-100 hover:bg-white hover:border-red-600/20 hover:shadow-2xl hover:shadow-red-600/10 transition-all duration-500">
+                    <div class="w-16 h-16 bg-navy text-white rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:bg-red-600 transition-colors shadow-lg">🛢️</div>
+                    <h3 class="text-2xl font-bold text-navy mb-4">Mecánica Integral</h3>
+                    <p class="text-slate-500 leading-relaxed">Mantenimiento preventivo, cambio de aceites, filtros y chequeo general de fluidos.</p>
                 </div>
-                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-xl transition-all group">
-                    <div class="w-14 h-14 bg-navy text-white rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-red-600 transition-colors">⚙️</div>
-                    <h3 class="text-xl font-bold text-navy mb-3">Tren Delantero</h3>
-                    <p class="text-slate-600">Suspensión, amortiguadores, bujes y estabilidad para un andar seguro.</p>
+                <div class="group p-10 rounded-[2.5rem] bg-slate-50 border border-slate-100 hover:bg-white hover:border-red-600/20 hover:shadow-2xl hover:shadow-red-600/10 transition-all duration-500">
+                    <div class="w-16 h-16 bg-navy text-white rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:bg-red-600 transition-colors shadow-lg">⚙️</div>
+                    <h3 class="text-2xl font-bold text-navy mb-4">Tren Delantero</h3>
+                    <p class="text-slate-500 leading-relaxed">Suspensión, amortiguadores y alineación para una conducción suave y segura.</p>
                 </div>
-                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-xl transition-all group">
-                    <div class="w-14 h-14 bg-navy text-white rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-red-600 transition-colors">🛑</div>
-                    <h3 class="text-xl font-bold text-navy mb-3">Frenos</h3>
-                    <p class="text-slate-600">Cambio de pastillas, rectificado de discos y purgado de sistemas.</p>
+                <div class="group p-10 rounded-[2.5rem] bg-slate-50 border border-slate-100 hover:bg-white hover:border-red-600/20 hover:shadow-2xl hover:shadow-red-600/10 transition-all duration-500">
+                    <div class="w-16 h-16 bg-navy text-white rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:bg-red-600 transition-colors shadow-lg">🛑</div>
+                    <h3 class="text-2xl font-bold text-navy mb-4">Frenos de Precisión</h3>
+                    <p class="text-slate-500 leading-relaxed">Cambio de pastillas, rectificado de discos y purgado de sistemas hidráulicos.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Ubicación -->
-    <section id="ubicacion" class="py-20 bg-slate-50">
+    <section id="ubicacion" class="py-24 bg-slate-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="bg-white p-6 md:p-12 rounded-[3rem] shadow-sm border border-slate-100 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div>
-                    <h2 class="text-3xl md:text-4xl font-extrabold text-navy mb-4">Ubicación</h2>
-                    <div class="w-20 h-1 bg-red-600 rounded-full mb-6"></div>
-                    <p class="text-lg text-slate-600 mb-8">Cabo Alfredo Alejandro Gonzalez 1547. Córdoba, Argentina.</p>
-                    <div class="space-y-4">
-                        <div class="flex items-center gap-4">
-                            <div class="bg-white p-3 rounded-full shadow-sm text-red-600">📍</div>
-                            <span class="text-slate-700">A metros de Av. Circunvalación Agustín Tosco</span>
+                    <h2 class="text-4xl font-black text-navy mb-6 tracking-tight">¿Dónde estamos?</h2>
+                    <p class="text-xl text-slate-600 mb-10 leading-relaxed">Nos encontramos en el corazón de la zona norte, a metros de Circunvalación para tu mayor comodidad.</p>
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-5 p-5 bg-slate-50 rounded-2xl border border-slate-100">
+                            <span class="text-2xl">📍</span>
+                            <div>
+                                <h4 class="font-bold text-navy">Dirección</h4>
+                                <p class="text-slate-500 text-sm">Cabo Alfredo Gonzalez 1547, Córdoba.</p>
+                            </div>
                         </div>
-                        <div class="flex items-center gap-4">
-                            <div class="bg-white p-3 rounded-full shadow-sm text-red-600">⏰</div>
-                            <span class="text-slate-700">Lunes a Viernes: 08:00 - 18:00 hs</span>
+                        <div class="flex items-center gap-5 p-5 bg-slate-50 rounded-2xl border border-slate-100">
+                            <span class="text-2xl">⏰</span>
+                            <div>
+                                <h4 class="font-bold text-navy">Horarios</h4>
+                                <p class="text-slate-500 text-sm">Lunes a Viernes de 08:00 a 18:00 hs.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="rounded-2xl overflow-hidden shadow-2xl h-80 border-4 border-white">
+                <div class="rounded-[2.5rem] overflow-hidden shadow-2xl h-96 border-[8px] border-slate-50">
                     <iframe src="https://www.google.com/maps?q=Cabo+Alfredo+Alejandro+Gonzalez+1547,+Cordoba,+Argentina&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
@@ -184,25 +183,40 @@
     </section>
 
     <!-- Contacto Form -->
-    <section id="contacto" class="py-20 bg-navy relative overflow-hidden">
+    <section id="contacto" class="py-24 bg-navy relative overflow-hidden">
         <div class="max-w-4xl mx-auto px-4 relative z-10">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-extrabold text-white mb-4">¿Consultas o Turnos?</h2>
-                <p class="text-slate-300">Completá los datos y te escribimos por WhatsApp.</p>
+                <h2 class="text-4xl font-black text-white mb-4">Tu consulta no molesta</h2>
+                <p class="text-slate-400 font-medium">Envianos los detalles de tu auto y te responderemos en breve.</p>
             </div>
-            <div class="bg-white rounded-3xl p-8 shadow-2xl">
-                <form id="whatsappForm" class="space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <input type="text" id="nombre" required class="w-full px-4 py-3 rounded-lg border border-slate-300 bg-slate-50 outline-none focus:ring-2 focus:ring-red-600" placeholder="Nombre">
-                        <input type="tel" id="telefono" required class="w-full px-4 py-3 rounded-lg border border-slate-300 bg-slate-50 outline-none focus:ring-2 focus:ring-red-600" placeholder="Teléfono">
+            <div class="bg-white rounded-[3rem] p-10 md:p-14 shadow-2xl">
+                <form id="whatsappForm" class="space-y-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="space-y-2">
+                            <label class="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Nombre</label>
+                            <input type="text" id="nombre" required class="input-presupuesto border-slate-200" placeholder="Ej: Juan Pérez">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Teléfono</label>
+                            <input type="tel" id="telefono" required class="input-presupuesto border-slate-200" placeholder="Ej: 3512345678">
+                        </div>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <input type="text" id="modelo" required class="w-full px-4 py-3 rounded-lg border border-slate-300 bg-slate-50 outline-none focus:ring-2 focus:ring-red-600" placeholder="Modelo del Auto">
-                        <input type="number" id="anio" required class="w-full px-4 py-3 rounded-lg border border-slate-300 bg-slate-50 outline-none focus:ring-2 focus:ring-red-600" placeholder="Año">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="space-y-2">
+                            <label class="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Vehículo</label>
+                            <input type="text" id="modelo" required class="input-presupuesto border-slate-200" placeholder="Ej: VW Vento">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Año</label>
+                            <input type="number" id="anio" required class="input-presupuesto border-slate-200" placeholder="Ej: 2018">
+                        </div>
                     </div>
-                    <textarea id="consulta" rows="3" required class="w-full px-4 py-3 rounded-lg border border-slate-300 bg-slate-50 outline-none focus:ring-2 focus:ring-red-600 resize-none" placeholder="¿Qué necesita tu vehículo?"></textarea>
-                    <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-xl transition-all flex justify-center items-center gap-2">
-                        Enviar mensaje por WhatsApp
+                    <div class="space-y-2">
+                        <label class="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Tu Mensaje</label>
+                        <textarea id="consulta" rows="4" required class="input-presupuesto border-slate-200 resize-none" placeholder="Contanos qué problema tiene tu vehículo..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-[#25D366] hover:bg-[#128C7E] text-white font-black py-5 rounded-2xl shadow-xl shadow-green-500/20 flex justify-center items-center gap-3 transition-all active:scale-95 text-lg">
+                        Enviar Consulta vía WhatsApp
                     </button>
                 </form>
             </div>
@@ -210,141 +224,142 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-white py-12 border-t border-slate-200">
+    <footer class="bg-white py-16 border-t border-slate-100">
         <div class="max-w-7xl mx-auto px-4 text-center">
-            <div class="flex items-center justify-center gap-2 text-navy mb-4">
+            <div class="flex items-center justify-center gap-3 text-navy mb-6">
                 <img src="logo.webp" alt="Logo" class="h-10 w-auto" onerror="this.src='https://via.placeholder.com/40x40?text=ST'">
-                <span class="text-xl font-bold">Taller<span class="text-red-600">ST</span></span>
+                <span class="text-2xl font-black italic tracking-tighter uppercase">Taller ST</span>
             </div>
-            <p class="text-slate-500 text-sm">&copy; <span id="currentYear"></span> Taller Mecánico ST. Córdoba, Arg.</p>
+            <p class="text-slate-400 text-sm font-medium">&copy; <span id="currentYear"></span> Taller Mecánico ST. Córdoba, Argentina. Todos los derechos reservados.</p>
         </div>
     </footer>
 
     <!-- BOTONES FLOTANTES -->
-    <div class="fixed bottom-6 right-6 flex flex-col gap-4 z-[60]">
-        
-        <!-- Botón Presupuesto Interno (Icono Pesos) -->
-        <button onclick="abrirModalPassword()" class="bg-navy text-white p-4 rounded-full shadow-2xl hover:bg-slate-800 transition-all hover:-translate-y-1 group relative">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div class="fixed bottom-8 right-8 flex flex-col gap-5 z-[60]">
+        <!-- Botón Presupuesto (Icono Pesos) -->
+        <button onclick="abrirModalPassword()" class="bg-navy text-white p-4 rounded-3xl shadow-2xl hover:bg-slate-800 transition-all hover:-translate-y-1 group relative">
+            <svg class="w-9 h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 1.343-3 3s1.343 3 3 3 3 1.343 3 3-1.343 3-3 3m0-18c-1.105 0-2 .895-2 2s.895 2 2 2 2-.895 2-2-.895-2-2-2zm0 0V6a2 2 0 012-2h2m-4 0H8a2 2 0 00-2 2v2M6 20h12a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z"></path>
             </svg>
-            <span class="absolute right-16 top-1/2 -translate-y-1/2 bg-navy text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+            <span class="absolute right-20 top-1/2 -translate-y-1/2 bg-navy text-white text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-2xl border border-white/10">
                 Generar Presupuesto
             </span>
         </button>
 
         <!-- Botón WhatsApp -->
-        <a href="https://wa.me/5493516337136" target="_blank" class="bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:bg-[#128C7E] transition-all hover:-translate-y-1 group relative animate-bounce hover:animate-none">
-            <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24"><path d="M12.031 0C5.385 0 0 5.386 0 12.031c0 2.126.549 4.192 1.593 6.015L.175 23.504l5.6-1.472a12.016 12.016 0 006.256 1.745c6.645 0 12.03-5.385 12.03-12.03S18.676 0 12.031 0zm0 21.782c-1.801 0-3.565-.483-5.111-1.4l-.367-.217-3.793.997 1.018-3.7-.238-.38a9.982 9.982 0 01-1.539-5.347c0-5.522 4.494-10.017 10.03-10.017 5.524 0 10.016 4.495 10.016 10.017 0 5.523-4.492 10.017-10.016 10.017zm5.496-7.513c-.301-.151-1.782-.88-2.059-.98-.277-.1-.478-.151-.68.151-.202.302-.78 1.002-.955 1.203-.176.202-.352.227-.653.076-1.921-.945-3.08-2.013-4.264-3.834-.126-.196-.013-.306.138-.455.136-.135.302-.353.453-.53.151-.176.202-.302.302-.503.1-.202.05-.378-.025-.53-.076-.151-.68-1.637-.93-2.242-.244-.593-.49-.512-.68-.521-.175-.01-.378-.01-.58-.01-.202 0-.528.076-.805.378-.277.302-1.055 1.03-1.055 2.515 0 1.485 1.08 2.92 1.231 3.12.151.202 2.13 3.251 5.161 4.56.721.311 1.284.497 1.724.637.724.229 1.383.197 1.9.119.58-.088 1.782-.729 2.034-1.433.252-.704.252-1.308.176-1.434-.076-.126-.277-.202-.578-.352z"></path></svg>
-            <span class="absolute right-16 top-1/2 -translate-y-1/2 bg-[#25D366] text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-                Chatear
-            </span>
+        <a href="https://wa.me/5493516337136" target="_blank" class="bg-[#25D366] text-white p-5 rounded-3xl shadow-2xl hover:bg-[#128C7E] transition-all hover:-translate-y-1 group relative animate-bounce hover:animate-none">
+            <svg class="w-9 h-9 fill-current" viewBox="0 0 24 24"><path d="M12.031 0C5.385 0 0 5.386 0 12.031c0 2.126.549 4.192 1.593 6.015L.175 23.504l5.6-1.472a12.016 12.016 0 006.256 1.745c6.645 0 12.03-5.385 12.03-12.03S18.676 0 12.031 0zm0 21.782c-1.801 0-3.565-.483-5.111-1.4l-.367-.217-3.793.997 1.018-3.7-.238-.38a9.982 9.982 0 01-1.539-5.347c0-5.522 4.494-10.017 10.03-10.017 5.524 0 10.016 4.495 10.016 10.017 0 5.523-4.492 10.017-10.016 10.017zm5.496-7.513c-.301-.151-1.782-.88-2.059-.98-.277-.1-.478-.151-.68.151-.202.302-.78 1.002-.955 1.203-.176.202-.352.227-.653.076-1.921-.945-3.08-2.013-4.264-3.834-.126-.196-.013-.306.138-.455.136-.135.302-.353.453-.53.151-.176.202-.302.302-.503.1-.202.05-.378-.025-.53-.076-.151-.68-1.637-.93-2.242-.244-.593-.49-.512-.68-.521-.175-.01-.378-.01-.58-.01-.202 0-.528.076-.805.378-.277.302-1.055 1.03-1.055 2.515 0 1.485 1.08 2.92 1.231 3.12.151.202 2.13 3.251 5.161 4.56.721.311 1.284.497 1.724.637.724.229 1.383.197 1.9.119.58-.088 1.782-.729 2.034-1.433.252-.704.252-1.308.176-1.434-.076-.126-.277-.202-.578-.352z"></path></svg>
         </a>
     </div>
 
     <!-- MODAL PASSWORD -->
-    <div id="modalPassword" class="fixed inset-0 bg-navy/80 backdrop-blur-md z-[100] hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl p-8 max-w-sm w-full shadow-2xl text-center">
-            <div class="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">🔐</div>
-            <h3 class="text-xl font-bold text-navy mb-2">Acceso Administrativo</h3>
-            <p class="text-slate-500 text-sm mb-6">Ingresa la clave para generar presupuestos.</p>
-            <input type="password" id="inputPass" class="w-full px-4 py-3 rounded-lg border border-slate-300 mb-4 text-center outline-none focus:ring-2 focus:ring-red-600" placeholder="Contraseña">
-            <div class="flex gap-2">
-                <button onclick="cerrarModal('modalPassword')" class="flex-1 py-3 text-slate-500 font-semibold">Cerrar</button>
-                <button onclick="verificarPassword()" class="flex-1 py-3 bg-red-600 text-white rounded-lg font-bold">Ingresar</button>
+    <div id="modalPassword" class="fixed inset-0 bg-navy/90 backdrop-blur-xl z-[100] hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-[3rem] p-10 max-w-sm w-full shadow-2xl text-center border border-white/10 animate-slideUp">
+            <div class="w-24 h-24 bg-slate-50 rounded-[2rem] flex items-center justify-center mx-auto mb-8 text-4xl shadow-inner border border-slate-100">🔐</div>
+            <h3 class="text-2xl font-black text-navy mb-3 tracking-tight">Acceso Privado</h3>
+            <p class="text-slate-400 text-sm mb-10 font-medium px-4">Ingresá la clave de facturación para crear un nuevo presupuesto.</p>
+            <input type="password" id="inputPass" class="input-presupuesto mb-8 text-center text-2xl font-black tracking-widest border-slate-200" placeholder="••••">
+            <div class="flex flex-col gap-4">
+                <button onclick="verificarPassword()" class="w-full py-5 bg-red-600 text-white rounded-2xl font-black shadow-xl shadow-red-600/30 hover:bg-red-700 transition-all active:scale-95">Ingresar</button>
+                <button onclick="cerrarModal('modalPassword')" class="w-full py-2 text-slate-400 font-bold text-sm">Cerrar</button>
             </div>
         </div>
     </div>
 
-    <!-- MODAL GENERADOR PRESUPUESTO -->
+    <!-- MODAL GENERADOR PRESUPUESTO (MEJORADO) -->
     <div id="modalPresupuesto" class="fixed inset-0 bg-slate-100 z-[101] hidden overflow-y-auto no-scrollbar">
-        <div class="min-h-screen p-4 md:p-10 flex flex-col items-center">
-            <div class="max-w-4xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden mb-10">
+        <div class="min-h-screen py-10 px-4 md:px-10 flex flex-col items-center">
+            <div class="max-w-4xl w-full bg-white rounded-[3.5rem] shadow-2xl overflow-hidden mb-20 border border-slate-200 animate-slideUp">
                 <!-- Header -->
-                <div class="bg-navy p-6 md:p-8 text-white flex flex-col md:flex-row justify-between items-center gap-4">
-                    <div class="flex items-center gap-3">
-                        <img src="logo.webp" alt="Logo" class="h-10 w-auto" onerror="this.src='https://via.placeholder.com/40x40?text=ST'">
-                        <h2 class="text-2xl font-bold italic">Generador de Presupuestos</h2>
+                <div class="bg-navy p-10 md:p-14 text-white flex flex-col md:flex-row justify-between items-center gap-8 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-red-600 rounded-full blur-[100px] opacity-20 -mr-32 -mt-32"></div>
+                    <div class="flex items-center gap-6 relative z-10">
+                        <img src="logo.webp" alt="Logo" class="h-16 w-auto bg-white p-2 rounded-2xl shadow-lg" onerror="this.src='https://via.placeholder.com/60x60?text=ST'">
+                        <div>
+                            <h2 class="text-3xl font-black italic tracking-tighter leading-none">Taller ST</h2>
+                            <p class="text-slate-400 text-[10px] mt-2 uppercase tracking-[0.3em] font-black">Sistema de Facturación</p>
+                        </div>
                     </div>
-                    <button onclick="cerrarModal('modalPresupuesto')" class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm transition-all">
-                        Finalizar y Salir
+                    <button onclick="cerrarModal('modalPresupuesto')" class="bg-white/10 hover:bg-white/20 px-8 py-3 rounded-2xl text-xs font-black uppercase tracking-widest transition-all border border-white/5 active:scale-95 relative z-10">
+                        Salir del Editor
                     </button>
                 </div>
 
-                <!-- Formulario -->
-                <form id="formPresupuesto" class="p-6 md:p-10 space-y-8">
-                    <!-- Sección 1: Cliente -->
-                    <div>
-                        <div class="flex items-center gap-2 mb-4">
-                            <span class="w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center text-sm font-bold">1</span>
-                            <h3 class="font-bold text-navy text-lg">Información del Cliente y Vehículo</h3>
+                <!-- Formulario Refinado -->
+                <form id="formPresupuesto" class="p-10 md:p-16 space-y-16">
+                    <!-- Sección 1 -->
+                    <div class="space-y-10">
+                        <div class="flex items-center gap-4">
+                            <span class="w-12 h-12 bg-navy text-white rounded-2xl flex items-center justify-center font-black shadow-xl border-b-4 border-red-600">01</span>
+                            <h3 class="font-black text-navy text-2xl tracking-tight">Datos de Recepción</h3>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                             <div class="md:col-span-2">
-                                <label class="text-xs font-bold text-slate-500 uppercase ml-1">Nombre Completo</label>
-                                <input type="text" id="p_cliente" placeholder="Nombre del cliente" class="input-presupuesto" required>
+                                <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3 block ml-2">Nombre del Cliente</label>
+                                <input type="text" id="p_cliente" placeholder="Nombre completo" class="input-presupuesto" required>
                             </div>
                             <div>
-                                <label class="text-xs font-bold text-slate-500 uppercase ml-1">Fecha</label>
-                                <input type="date" id="p_fecha" class="input-presupuesto">
+                                <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3 block ml-2">Fecha</label>
+                                <input type="date" id="p_fecha" class="input-presupuesto font-bold">
                             </div>
                             <div class="md:col-span-2">
-                                <label class="text-xs font-bold text-slate-500 uppercase ml-1">Marca y Modelo del Vehículo</label>
-                                <input type="text" id="p_vehiculo" placeholder="Ej: Toyota Hilux 2021" class="input-presupuesto" required>
+                                <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3 block ml-2">Vehículo y Versión</label>
+                                <input type="text" id="p_vehiculo" placeholder="Ej: VW Amarok V6 3.0" class="input-presupuesto" required>
                             </div>
                             <div>
-                                <label class="text-xs font-bold text-slate-500 uppercase ml-1">Patente / Dominio</label>
-                                <input type="text" id="p_patente" placeholder="Ej: AF123XY" class="input-presupuesto">
+                                <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3 block ml-2">Patente / Dominio</label>
+                                <input type="text" id="p_patente" placeholder="Ej: AF 555 ST" class="input-presupuesto uppercase">
                             </div>
                         </div>
                     </div>
 
-                    <!-- Sección 2: Detalle -->
-                    <div>
-                        <div class="flex items-center gap-2 mb-4">
-                            <span class="w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center text-sm font-bold">2</span>
-                            <h3 class="font-bold text-navy text-lg">Detalle de Trabajos y Repuestos</h3>
+                    <!-- Sección 2 -->
+                    <div class="space-y-10">
+                        <div class="flex items-center gap-4">
+                            <span class="w-12 h-12 bg-navy text-white rounded-2xl flex items-center justify-center font-black shadow-xl border-b-4 border-red-600">02</span>
+                            <h3 class="font-black text-navy text-2xl tracking-tight">Presupuesto Detallado</h3>
                         </div>
-                        <div class="space-y-3" id="itemsContainer">
-                            <!-- Encabezado de tabla interna -->
-                            <div class="hidden md:flex gap-4 px-2 text-xs font-bold text-slate-400 uppercase">
-                                <div class="flex-1">Descripción del servicio o repuesto</div>
-                                <div class="w-40 text-right">Monto ($)</div>
+                        <div class="space-y-5" id="itemsContainer">
+                            <div class="hidden md:flex gap-8 px-6 text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                                <div class="flex-1">Trabajos realizados o repuestos</div>
+                                <div class="w-48 text-right pr-12">Importe ($)</div>
                                 <div class="w-10"></div>
                             </div>
-                            <!-- Primer item (obligatorio) -->
-                            <div class="flex flex-col md:flex-row gap-2 md:gap-4 p-4 bg-slate-50 rounded-xl item-row group">
-                                <input type="text" placeholder="Ej: Kit Distribución SKF" class="flex-1 input-presupuesto desc-item" required>
-                                <div class="flex items-center gap-2">
-                                    <span class="md:hidden text-xs font-bold">$</span>
-                                    <input type="number" placeholder="0.00" class="w-full md:w-40 input-presupuesto precio-item text-right" oninput="calcularTotal()">
+                            <!-- Item inicial -->
+                            <div class="flex flex-col md:flex-row gap-4 md:gap-8 p-8 bg-slate-50/50 rounded-[2rem] item-row group border border-slate-200 transition-all hover:bg-white hover:shadow-xl hover:border-red-600/20 animate-slideUp">
+                                <input type="text" placeholder="Ej: Service de aceite y filtros (Castrol 5W40)" class="flex-1 input-presupuesto" required>
+                                <div class="flex items-center gap-4">
+                                    <span class="md:hidden text-xs font-black text-slate-400">$</span>
+                                    <input type="number" placeholder="0.00" class="w-full md:w-48 input-presupuesto precio-item text-right font-black text-red-600" oninput="calcularTotal()">
                                 </div>
                                 <div class="w-10 flex items-center justify-center"></div>
                             </div>
                         </div>
-                        <button type="button" onclick="agregarItem()" class="mt-4 flex items-center gap-2 text-red-600 font-bold hover:text-red-700 transition-colors">
-                            <span class="text-xl">+</span> Agregar otra línea
+                        <button type="button" onclick="agregarItem()" class="group mt-6 flex items-center gap-4 text-red-600 font-black hover:text-red-700 transition-all bg-red-600/5 px-8 py-5 rounded-[1.5rem] border border-red-600/10">
+                            <span class="text-2xl transition-transform group-hover:rotate-90">+</span> Añadir otro concepto
                         </button>
                     </div>
 
-                    <!-- Sección 3: Totales -->
-                    <div class="bg-navy p-6 rounded-2xl text-white flex flex-col md:flex-row justify-between items-center gap-6">
-                        <div class="flex-1">
-                            <label class="text-xs font-bold text-slate-400 uppercase">Observaciones Adicionales (opcional)</label>
-                            <input type="text" id="p_obs" placeholder="Ej: Garantía 6 meses o 10.000km" class="w-full bg-navy-light border border-white/10 rounded-lg px-4 py-2 mt-1 outline-none focus:border-red-600">
+                    <!-- Sección 3 -->
+                    <div class="bg-navy p-10 md:p-14 rounded-[3rem] text-white flex flex-col md:flex-row justify-between items-center gap-10 shadow-2xl relative overflow-hidden">
+                        <div class="absolute bottom-0 left-0 w-48 h-48 bg-blue-600 rounded-full blur-[80px] opacity-10 -ml-24 -mb-24"></div>
+                        <div class="flex-1 w-full relative z-10">
+                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3 block ml-1">Notas, Garantías u Observaciones</label>
+                            <input type="text" id="p_obs" placeholder="Ej: Garantía de 6 meses en mano de obra." class="w-full bg-navy-light border border-white/10 rounded-2xl px-6 py-5 outline-none focus:border-red-600 transition-all font-medium text-slate-300">
                         </div>
-                        <div class="text-center md:text-right min-w-[200px]">
-                            <p class="text-slate-400 text-sm font-bold uppercase">Total Presupuestado</p>
-                            <div class="text-4xl font-black text-red-600 flex items-center justify-center md:justify-end gap-1">
-                                <span>$</span>
-                                <input type="number" id="p_total" value="0" readonly class="bg-transparent border-none outline-none w-48 text-right">
+                        <div class="text-center md:text-right min-w-[280px] relative z-10">
+                            <p class="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-3 pr-2">Subtotal Final</p>
+                            <div class="text-6xl font-black text-red-600 flex items-center justify-center md:justify-end gap-3 tracking-tighter">
+                                <span class="text-2xl mt-4 font-bold">$</span>
+                                <input type="number" id="p_total" value="0" readonly class="bg-transparent border-none outline-none w-56 text-right pointer-events-none">
                             </div>
                         </div>
                     </div>
 
-                    <div class="flex flex-col md:flex-row gap-4">
-                        <button type="button" onclick="generarPDF()" class="flex-1 bg-red-600 hover:bg-red-700 text-white font-bold py-5 rounded-2xl shadow-xl shadow-red-600/20 flex items-center justify-center gap-3 transition-all hover:-translate-y-1">
-                            📄 Generar y Descargar PDF
+                    <div class="pt-10">
+                        <button type="button" onclick="generarPDF()" class="w-full bg-red-600 hover:bg-red-700 text-white font-black py-7 rounded-[2rem] shadow-2xl shadow-red-600/40 flex items-center justify-center gap-5 transition-all active:scale-95 text-xl tracking-tight">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                            DESCARGAR PRESUPUESTO PDF
                         </button>
                     </div>
                 </form>
@@ -354,33 +369,20 @@
 
     <!-- SCRIPTS -->
     <script>
-        // --- Utilidades ---
         document.getElementById('currentYear').textContent = new Date().getFullYear();
         document.getElementById('p_fecha').valueAsDate = new Date();
 
-        // --- Navegación ---
         const nav = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
-                nav.classList.add('shadow-lg', 'bg-white/95', 'backdrop-blur-sm');
+                nav.classList.add('shadow-lg', 'bg-white/95', 'py-2');
+                nav.classList.remove('bg-white/90');
             } else {
-                nav.classList.remove('shadow-lg', 'bg-white/95', 'backdrop-blur-sm');
+                nav.classList.remove('shadow-lg', 'py-2');
+                nav.classList.add('bg-white/90');
             }
         });
 
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-        document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => mobileMenu.classList.add('hidden')));
-
-        // --- WhatsApp Form ---
-        document.getElementById('whatsappForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const msg = `¡Hola Taller ST! 👋\n\nMi nombre es *${document.getElementById('nombre').value}*.\n🚘 *Vehículo:* ${document.getElementById('modelo').value} (${document.getElementById('anio').value})\n📞 *Tel:* ${document.getElementById('telefono').value}\n\n*Consulta:*\n${document.getElementById('consulta').value}`;
-            window.open(`https://wa.me/5493516337136?text=${encodeURIComponent(msg)}`, '_blank');
-        });
-
-        // --- Lógica de Presupuestos ---
         function abrirModalPassword() {
             document.getElementById('modalPassword').classList.remove('hidden');
             document.getElementById('inputPass').focus();
@@ -391,29 +393,30 @@
         }
 
         function verificarPassword() {
-            const pass = document.getElementById('inputPass').value;
-            if (pass.toLowerCase() === 'presupuesto') {
+            if (document.getElementById('inputPass').value.toLowerCase() === 'presupuesto') {
                 cerrarModal('modalPassword');
                 document.getElementById('modalPresupuesto').classList.remove('hidden');
                 document.getElementById('inputPass').value = '';
             } else {
-                const input = document.getElementById('inputPass');
-                input.classList.add('border-red-600', 'animate-pulse');
-                setTimeout(() => input.classList.remove('border-red-600', 'animate-pulse'), 1000);
+                const inp = document.getElementById('inputPass');
+                inp.classList.add('border-red-600', 'bg-red-50');
+                setTimeout(() => inp.classList.remove('border-red-600', 'bg-red-50'), 500);
             }
         }
 
         function agregarItem() {
             const container = document.getElementById('itemsContainer');
             const div = document.createElement('div');
-            div.className = 'flex flex-col md:flex-row gap-2 md:gap-4 p-4 bg-slate-50 rounded-xl item-row group animate-fadeIn';
+            div.className = 'flex flex-col md:flex-row gap-4 md:gap-8 p-8 bg-slate-50/50 rounded-[2rem] item-row group border border-slate-200 transition-all hover:bg-white hover:shadow-xl hover:border-red-600/20 animate-slideUp';
             div.innerHTML = `
-                <input type="text" placeholder="Descripción..." class="flex-1 input-presupuesto desc-item">
-                <div class="flex items-center gap-2">
-                    <span class="md:hidden text-xs font-bold">$</span>
-                    <input type="number" placeholder="0.00" class="w-full md:w-40 input-presupuesto precio-item text-right" oninput="calcularTotal()">
+                <input type="text" placeholder="Nueva tarea..." class="flex-1 input-presupuesto">
+                <div class="flex items-center gap-4">
+                    <span class="md:hidden text-xs font-black text-slate-400">$</span>
+                    <input type="number" placeholder="0.00" class="w-full md:w-48 input-presupuesto precio-item text-right font-black text-red-600" oninput="calcularTotal()">
                 </div>
-                <button type="button" onclick="this.parentElement.remove(); calcularTotal();" class="text-red-600 hover:bg-red-50 p-2 rounded-lg">✕</button>
+                <button type="button" onclick="this.parentElement.remove(); calcularTotal();" class="text-slate-300 hover:text-red-600 p-3 rounded-2xl transition-all hover:bg-red-50">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                </button>
             `;
             container.appendChild(div);
         }
@@ -425,71 +428,88 @@
             document.getElementById('p_total').value = total;
         }
 
+        // --- PDF GENERATOR ---
+        function getBase64Image(img) {
+            const canvas = document.createElement("canvas");
+            canvas.width = img.naturalWidth;
+            canvas.height = img.naturalHeight;
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0);
+            return canvas.toDataURL("image/png");
+        }
+
         async function generarPDF() {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
-            
-            // Estilos
             const navy = [10, 25, 47];
             const red = [220, 38, 38];
             const cliente = document.getElementById('p_cliente').value || "CLIENTE";
-            const fechaVal = document.getElementById('p_fecha').value.split('-').reverse().join('/');
 
-            // Encabezado
+            // Header
             doc.setFillColor(...navy);
-            doc.rect(0, 0, 210, 50, 'F');
+            doc.rect(0, 0, 210, 60, 'F');
             
+            // Logo fallback
+            try {
+                const img = document.getElementById('main-logo');
+                if (img && img.complete) {
+                    const data = getBase64Image(img);
+                    doc.addImage(data, 'PNG', 15, 12, 35, 35);
+                }
+            } catch(e) {}
+
             doc.setTextColor(255, 255, 255);
-            doc.setFontSize(28);
+            doc.setFontSize(26);
             doc.setFont("helvetica", "bold");
-            doc.text("Taller ST", 15, 25);
+            doc.text("PRESUPUESTO", 200, 30, { align: "right" });
+            
             doc.setFontSize(10);
             doc.setFont("helvetica", "normal");
-            doc.text("PRESUPUESTO DE SERVICIO", 15, 33);
+            doc.text("Cabo Alfredo Gonzalez 1547, Córdoba", 200, 38, { align: "right" });
+            doc.text("WhatsApp: +54 9 351 633-7136", 200, 43, { align: "right" });
 
-            doc.text("Cabo Alfredo Gonzalez 1547, Córdoba", 130, 20);
-            doc.text("WhatsApp: +54 9 351 633-7136", 130, 26);
-            doc.text(`Fecha: ${fechaVal}`, 130, 32);
-
-            // Información
-            doc.setTextColor(0, 0, 0);
-            doc.setFontSize(11);
-            doc.setFillColor(245, 245, 245);
-            doc.rect(15, 60, 180, 25, 'F');
+            // Cliente Info
+            doc.setFillColor(248, 250, 252);
+            doc.roundedRect(15, 70, 180, 35, 3, 3, 'F');
+            doc.setTextColor(100, 116, 139);
+            doc.setFontSize(8);
+            doc.text("CLIENTE", 22, 80);
+            doc.text("VEHÍCULO / MOTORIZACIÓN", 22, 93);
+            doc.text("DOMINIO", 160, 93);
             
+            doc.setTextColor(...navy);
+            doc.setFontSize(12);
             doc.setFont("helvetica", "bold");
-            doc.text("CLIENTE:", 20, 70);
-            doc.text("VEHÍCULO:", 20, 78);
-            doc.text("PATENTE:", 120, 78);
+            doc.text(cliente.toUpperCase(), 22, 86);
+            doc.text(document.getElementById('p_vehiculo').value.toUpperCase(), 22, 99);
+            doc.text(document.getElementById('p_patente').value.toUpperCase(), 160, 99);
 
-            doc.setFont("helvetica", "normal");
-            doc.text(cliente.toUpperCase(), 45, 70);
-            doc.text(document.getElementById('p_vehiculo').value.toUpperCase(), 45, 78);
-            doc.text(document.getElementById('p_patente').value.toUpperCase(), 145, 78);
-
-            // Tabla Items
-            let y = 100;
+            // Table
+            let y = 115;
             doc.setFillColor(...red);
-            doc.rect(15, y, 180, 8, 'F');
+            doc.rect(15, y, 180, 12, 'F');
             doc.setTextColor(255, 255, 255);
-            doc.setFont("helvetica", "bold");
-            doc.text("DESCRIPCIÓN DEL TRABAJO / REPUESTO", 20, y + 5);
-            doc.text("SUBTOTAL", 165, y + 5);
+            doc.setFontSize(9);
+            doc.text("DETALLE DE SERVICIO / REPUESTOS", 20, y + 7.5);
+            doc.text("MONTO ($)", 170, y + 7.5);
 
-            y += 15;
-            doc.setTextColor(40, 40, 40);
+            y += 20;
+            doc.setTextColor(50, 50, 50);
+            doc.setFontSize(10);
             doc.setFont("helvetica", "normal");
-            
-            const descs = document.querySelectorAll('.desc-item');
-            const prices = document.querySelectorAll('.precio-item');
 
-            descs.forEach((d, i) => {
-                if(d.value) {
-                    doc.text(d.value, 20, y);
-                    doc.text(`$ ${Number(prices[i].value).toLocaleString()}`, 165, y);
-                    doc.setDrawColor(230, 230, 230);
-                    doc.line(15, y + 3, 195, y + 3);
-                    y += 10;
+            const items = document.querySelectorAll('.item-row');
+            items.forEach(row => {
+                const desc = row.querySelector('input:first-child').value;
+                const price = row.querySelector('.precio-item').value;
+                if(desc) {
+                    doc.text(desc, 20, y);
+                    doc.setFont("helvetica", "bold");
+                    doc.text(`$ ${Number(price).toLocaleString()}`, 175, y, { align: "right" });
+                    doc.setFont("helvetica", "normal");
+                    doc.setDrawColor(241, 245, 249);
+                    doc.line(15, y + 4, 195, y + 4);
+                    y += 12;
                 }
             });
 
@@ -498,32 +518,17 @@
             doc.setDrawColor(...red);
             doc.setLineWidth(1);
             doc.line(130, y, 195, y);
-            
-            doc.setFontSize(18);
+            doc.setFontSize(22);
             doc.setFont("helvetica", "bold");
-            doc.setTextColor(...navy);
-            doc.text("TOTAL:", 135, y + 12);
             doc.setTextColor(...red);
-            doc.text(`$ ${Number(document.getElementById('p_total').value).toLocaleString()}`, 158, y + 12);
+            doc.text(`TOTAL: $ ${Number(document.getElementById('p_total').value).toLocaleString()}`, 195, y + 15, { align: "right" });
 
-            // Notas
-            if(document.getElementById('p_obs').value) {
-                y += 30;
-                doc.setFontSize(10);
-                doc.setTextColor(100, 100, 100);
-                doc.setFont("helvetica", "italic");
-                doc.text("Observaciones:", 15, y);
-                doc.text(document.getElementById('p_obs').value, 15, y + 5);
-            }
-
-            // Pie
+            // Footer
             doc.setFontSize(8);
-            doc.setFont("helvetica", "normal");
             doc.setTextColor(150, 150, 150);
-            doc.text("Este documento es un presupuesto estimado. Sujeto a cambios según variaciones de precios en repuestos.", 105, 285, {align: "center"});
+            doc.text("Taller ST - Calidad, Confianza y Transparencia.", 105, 285, { align: "center" });
 
-            // Descargar
-            doc.save(`ST_Presupuesto_${cliente.replace(/\s/g, '_')}.pdf`);
+            doc.save(`Presupuesto_ST_${cliente.replace(/\s/g, '_')}.pdf`);
         }
     </script>
 </body>
